@@ -1,0 +1,3086 @@
+
+
+Microchip MPLAB XC8 Assembler V2.46 build 20240104201356 
+                                                                                               Wed Aug 21 00:38:06 2024
+
+Microchip MPLAB XC8 C Compiler v2.46 (Free license) build 20240104201356 Og1 
+     1                           	processor	18F46K20
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1,noexec
+     6                           	psect	nvCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     7                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     8                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     9                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    10                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+    11                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    22                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    23                           	psect	text12,global,reloc=2,class=CODE,delta=1
+    24                           	psect	text13,global,reloc=2,class=CODE,delta=1
+    25                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+    26                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    27                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    28                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    29   000000                     
+    30                           ; Generated 12/10/2023 GMT
+    31                           ; 
+    32                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    33                           ; All rights reserved.
+    34                           ; 
+    35                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    36                           ; 
+    37                           ; Redistribution and use in source and binary forms, with or without modification, are
+    38                           ; permitted provided that the following conditions are met:
+    39                           ; 
+    40                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    41                           ;        conditions and the following disclaimer.
+    42                           ; 
+    43                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    44                           ;        of conditions and the following disclaimer in the documentation and/or other
+    45                           ;        materials provided with the distribution. Publication is not required when
+    46                           ;        this file is used in an embedded application.
+    47                           ; 
+    48                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    49                           ;        software without specific prior written permission.
+    50                           ; 
+    51                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    52                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    53                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    54                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    55                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    56                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    57                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    58                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    59                           ; 
+    60                           ; 
+    61                           ; Code-generator required, PIC18F46K20 Definitions
+    62                           ; 
+    63                           ; SFR Addresses
+    64   000000                     
+    65                           	psect	idataCOMRAM
+    66   0018BA                     __pidataCOMRAM:
+    67                           	callstack 0
+    68                           
+    69                           ;initializer for _port_registers
+    70   0018BA  80                 	db	128
+    71   0018BB  0F                 	db	15
+    72   0018BC  81                 	db	129
+    73   0018BD  0F                 	db	15
+    74   0018BE  82                 	db	130
+    75   0018BF  0F                 	db	15
+    76   0018C0  83                 	db	131
+    77   0018C1  0F                 	db	15
+    78   0018C2  84                 	db	132
+    79   0018C3  0F                 	db	15
+    80                           
+    81                           ;initializer for _lat_registers
+    82   0018C4  89                 	db	137
+    83   0018C5  0F                 	db	15
+    84   0018C6  8A                 	db	138
+    85   0018C7  0F                 	db	15
+    86   0018C8  8B                 	db	139
+    87   0018C9  0F                 	db	15
+    88   0018CA  8C                 	db	140
+    89   0018CB  0F                 	db	15
+    90   0018CC  8D                 	db	141
+    91   0018CD  0F                 	db	15
+    92                           
+    93                           ;initializer for _tris_registers
+    94   0018CE  92                 	db	146
+    95   0018CF  0F                 	db	15
+    96   0018D0  93                 	db	147
+    97   0018D1  0F                 	db	15
+    98   0018D2  94                 	db	148
+    99   0018D3  0F                 	db	15
+   100   0018D4  95                 	db	149
+   101   0018D5  0F                 	db	15
+   102   0018D6  96                 	db	150
+   103   0018D7  0F                 	db	15
+   104                           
+   105                           ;initializer for _btn_low_last_valid_status
+   106   0018D8  01                 	db	1
+   107                           
+   108                           ;initializer for _btn_low_valid_status
+   109   0018D9  01                 	db	1
+   110                           
+   111                           ;initializer for _btn_high_last_valid_status
+   112   0018DA  01                 	db	1
+   113                           
+   114                           ;initializer for _btn_high_valid_status
+   115   0018DB  01                 	db	1
+   116                           
+   117                           ;initializer for _btn_low
+   118   0018DC  CB                 	db	203
+   119   0018DD  01                 	db	1
+   120   0018DE  01                 	db	1
+   121                           
+   122                           ;initializer for _btn_high
+   123   0018DF  43                 	db	67
+   124   0018E0  01                 	db	1
+   125   0018E1  00                 	db	0
+   126                           
+   127                           ;initializer for _relay_1
+   128   0018E2  23                 	db	35
+   129                           
+   130                           ;initializer for _led_8
+   131   0018E3  72                 	db	114
+   132                           
+   133                           ;initializer for _led_7
+   134   0018E4  62                 	db	98
+   135                           
+   136                           ;initializer for _led_6
+   137   0018E5  52                 	db	82
+   138                           
+   139                           ;initializer for _led_5
+   140   0018E6  42                 	db	66
+   141                           
+   142                           ;initializer for _led_4
+   143   0018E7  32                 	db	50
+   144                           
+   145                           ;initializer for _led_3
+   146   0018E8  22                 	db	34
+   147                           
+   148                           ;initializer for _led_2
+   149   0018E9  12                 	db	18
+   150                           
+   151                           ;initializer for _led_1
+   152   0018EA  02                 	db	2
+   153                           
+   154                           	psect	nvCOMRAM
+   155   00004E                     __pnvCOMRAM:
+   156                           	callstack 0
+   157   00004E                     _ret:
+   158                           	callstack 0
+   159   00004E                     	ds	1
+   160   000000                     _PORTA	set	3968
+   161   000000                     _LATA	set	3977
+   162   000000                     _TRISA	set	3986
+   163   000000                     _TRISE	set	3990
+   164   000000                     _TRISD	set	3989
+   165   000000                     _TRISC	set	3988
+   166   000000                     _TRISB	set	3987
+   167   000000                     _LATE	set	3981
+   168   000000                     _LATD	set	3980
+   169   000000                     _LATC	set	3979
+   170   000000                     _LATB	set	3978
+   171   000000                     _PORTE	set	3972
+   172   000000                     _PORTD	set	3971
+   173   000000                     _PORTC	set	3970
+   174   000000                     _PORTB	set	3969
+   175                           
+   176                           ; #config settings
+   177                           
+   178                           	psect	cinit
+   179   001884                     __pcinit:
+   180                           	callstack 0
+   181   001884                     start_initialization:
+   182                           	callstack 0
+   183   001884                     __initialization:
+   184                           	callstack 0
+   185                           
+   186                           ; Initialize objects allocated to COMRAM (49 bytes)
+   187                           ; load TBLPTR registers with __pidataCOMRAM
+   188   001884  0EBA               	movlw	low __pidataCOMRAM
+   189   001886  6EF6               	movwf	tblptrl,c
+   190   001888  0E18               	movlw	high __pidataCOMRAM
+   191   00188A  6EF7               	movwf	tblptrh,c
+   192   00188C  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   193   00188E  6EF8               	movwf	tblptru,c
+   194   001890  EE00  F001         	lfsr	0,__pdataCOMRAM
+   195   001894  EE10 F031          	lfsr	1,49
+   196   001898                     copy_data0:
+   197   001898  0009               	tblrd		*+
+   198   00189A  CFF5 FFEE          	movff	tablat,postinc0
+   199   00189E  50E5               	movf	postdec1,w,c
+   200   0018A0  50E1               	movf	fsr1l,w,c
+   201   0018A2  E1FA               	bnz	copy_data0
+   202                           
+   203                           ; Clear objects allocated to COMRAM (14 bytes)
+   204   0018A4  EE00  F032         	lfsr	0,__pbssCOMRAM
+   205   0018A8  0E0E               	movlw	14
+   206   0018AA                     clear_0:
+   207   0018AA  6AEE               	clrf	postinc0,c
+   208   0018AC  06E8               	decf	wreg,f,c
+   209   0018AE  E1FD               	bnz	clear_0
+   210   0018B0                     end_of_initialization:
+   211                           	callstack 0
+   212   0018B0                     __end_of__initialization:
+   213                           	callstack 0
+   214   0018B0  0E00               	movlw	low (__Lmediumconst shr (0+16))
+   215   0018B2  6EF8               	movwf	tblptru,c
+   216   0018B4  0100               	movlb	0
+   217   0018B6  EF01  F008         	goto	_main	;jump to C main() function
+   218                           
+   219                           	psect	bssCOMRAM
+   220   000032                     __pbssCOMRAM:
+   221                           	callstack 0
+   222   000032                     _btn_low_valid:
+   223                           	callstack 0
+   224   000032                     	ds	2
+   225   000034                     _btn_high_valid:
+   226                           	callstack 0
+   227   000034                     	ds	2
+   228   000036                     relay_turn_off@F3147:
+   229                           	callstack 0
+   230   000036                     	ds	1
+   231   000037                     relay_turn_on@F3142:
+   232                           	callstack 0
+   233   000037                     	ds	1
+   234   000038                     relay_initialize@F3137:
+   235                           	callstack 0
+   236   000038                     	ds	1
+   237   000039                     _flag:
+   238                           	callstack 0
+   239   000039                     	ds	1
+   240   00003A                     led_turn_toggle@F3158:
+   241                           	callstack 0
+   242   00003A                     	ds	1
+   243   00003B                     led_turn_off@F3153:
+   244                           	callstack 0
+   245   00003B                     	ds	1
+   246   00003C                     led_turn_on@F3148:
+   247                           	callstack 0
+   248   00003C                     	ds	1
+   249   00003D                     led_initialize@F3143:
+   250                           	callstack 0
+   251   00003D                     	ds	1
+   252   00003E                     _btn_status_low:
+   253                           	callstack 0
+   254   00003E                     	ds	1
+   255   00003F                     _btn_status_high:
+   256                           	callstack 0
+   257   00003F                     	ds	1
+   258                           
+   259                           	psect	dataCOMRAM
+   260   000001                     __pdataCOMRAM:
+   261                           	callstack 0
+   262   000001                     _port_registers:
+   263                           	callstack 0
+   264   000001                     	ds	10
+   265   00000B                     _lat_registers:
+   266                           	callstack 0
+   267   00000B                     	ds	10
+   268   000015                     _tris_registers:
+   269                           	callstack 0
+   270   000015                     	ds	10
+   271   00001F                     _btn_low_last_valid_status:
+   272                           	callstack 0
+   273   00001F                     	ds	1
+   274   000020                     _btn_low_valid_status:
+   275                           	callstack 0
+   276   000020                     	ds	1
+   277   000021                     _btn_high_last_valid_status:
+   278                           	callstack 0
+   279   000021                     	ds	1
+   280   000022                     _btn_high_valid_status:
+   281                           	callstack 0
+   282   000022                     	ds	1
+   283   000023                     _btn_low:
+   284                           	callstack 0
+   285   000023                     	ds	3
+   286   000026                     _btn_high:
+   287                           	callstack 0
+   288   000026                     	ds	3
+   289   000029                     _relay_1:
+   290                           	callstack 0
+   291   000029                     	ds	1
+   292   00002A                     _led_8:
+   293                           	callstack 0
+   294   00002A                     	ds	1
+   295   00002B                     _led_7:
+   296                           	callstack 0
+   297   00002B                     	ds	1
+   298   00002C                     _led_6:
+   299                           	callstack 0
+   300   00002C                     	ds	1
+   301   00002D                     _led_5:
+   302                           	callstack 0
+   303   00002D                     	ds	1
+   304   00002E                     _led_4:
+   305                           	callstack 0
+   306   00002E                     	ds	1
+   307   00002F                     _led_3:
+   308                           	callstack 0
+   309   00002F                     	ds	1
+   310   000030                     _led_2:
+   311                           	callstack 0
+   312   000030                     	ds	1
+   313   000031                     _led_1:
+   314                           	callstack 0
+   315   000031                     	ds	1
+   316                           
+   317                           	psect	cstackCOMRAM
+   318   000040                     __pcstackCOMRAM:
+   319                           	callstack 0
+   320   000040                     gpio_pin_direction_initialization@pin_config:
+   321                           	callstack 0
+   322   000040                     gpio_pin_write_logic@pin_config:
+   323                           	callstack 0
+   324   000040                     gpio_pin_read_logic@pin_config:
+   325                           	callstack 0
+   326                           
+   327                           ; 1 bytes @ 0x0
+   328   000040                     	ds	1
+   329   000041                     ??_gpio_pin_direction_initialization:
+   330   000041                     gpio_pin_write_logic@logic:
+   331                           	callstack 0
+   332   000041                     gpio_pin_read_logic@logic_status:
+   333                           	callstack 0
+   334                           
+   335                           ; 1 bytes @ 0x1
+   336   000041                     	ds	1
+   337   000042                     ??_gpio_pin_read_logic:
+   338   000042                     ??_gpio_pin_write_logic:
+   339                           
+   340                           ; 1 bytes @ 0x2
+   341   000042                     	ds	4
+   342   000046                     button_read_state@btn:
+   343                           	callstack 0
+   344   000046                     gpio_pin_direction_initialization@ret:
+   345                           	callstack 0
+   346                           
+   347                           ; 1 bytes @ 0x6
+   348   000046                     	ds	1
+   349   000047                     button_initialize@btn:
+   350                           	callstack 0
+   351   000047                     button_read_state@btn_state:
+   352                           	callstack 0
+   353   000047                     gpio_pin_write_logic@ret:
+   354                           	callstack 0
+   355                           
+   356                           ; 1 bytes @ 0x7
+   357   000047                     	ds	1
+   358   000048                     button_initialize@ret:
+   359                           	callstack 0
+   360   000048                     led_turn_on@led:
+   361                           	callstack 0
+   362   000048                     led_turn_off@led:
+   363                           	callstack 0
+   364   000048                     gpio_pin_initialization@pin_config:
+   365                           	callstack 0
+   366   000048                     relay_turn_on@_relay:
+   367                           	callstack 0
+   368   000048                     relay_turn_off@_relay:
+   369                           	callstack 0
+   370                           
+   371                           ; 1 bytes @ 0x8
+   372   000048                     	ds	1
+   373   000049                     ??_gpio_pin_initialization:
+   374   000049                     ??_relay_turn_off:
+   375   000049                     ??_relay_turn_on:
+   376   000049                     ??_led_turn_on:
+   377   000049                     ??_led_turn_off:
+   378   000049                     button_read_state@ret:
+   379                           	callstack 0
+   380                           
+   381                           ; 1 bytes @ 0x9
+   382   000049                     	ds	1
+   383   00004A                     button_read_state@Pin_Logic_Status:
+   384                           	callstack 0
+   385   00004A                     led_initialize@led:
+   386                           	callstack 0
+   387   00004A                     led_turn_on@pin_obj:
+   388                           	callstack 0
+   389   00004A                     led_turn_off@pin_obj:
+   390                           	callstack 0
+   391   00004A                     relay_initialize@_relay:
+   392                           	callstack 0
+   393   00004A                     relay_turn_on@pin_obj:
+   394                           	callstack 0
+   395   00004A                     relay_turn_off@pin_obj:
+   396                           	callstack 0
+   397                           
+   398                           ; 1 bytes @ 0xA
+   399   00004A                     	ds	1
+   400   00004B                     ??_relay_initialize:
+   401   00004B                     ??_led_initialize:
+   402                           
+   403                           ; 1 bytes @ 0xB
+   404   00004B                     	ds	1
+   405   00004C                     led_initialize@ret:
+   406                           	callstack 0
+   407   00004C                     relay_initialize@ret:
+   408                           	callstack 0
+   409                           
+   410                           ; 1 bytes @ 0xC
+   411   00004C                     	ds	1
+   412   00004D                     led_initialize@pin_obj:
+   413                           	callstack 0
+   414   00004D                     relay_initialize@pin_obj:
+   415                           	callstack 0
+   416                           
+   417                           ; 1 bytes @ 0xD
+   418   00004D                     	ds	1
+   419   00004E                     
+   420                           ; 1 bytes @ 0xE
+   421 ;;
+   422 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   423 ;;
+   424 ;; *************** function _main *****************
+   425 ;; Defined at:
+   426 ;;		line 105 in file "application.c"
+   427 ;; Parameters:    Size  Location     Type
+   428 ;;		None
+   429 ;; Auto vars:     Size  Location     Type
+   430 ;;		None
+   431 ;; Return value:  Size  Location     Type
+   432 ;;                  2  236[None  ] int 
+   433 ;; Registers used:
+   434 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   435 ;; Tracked objects:
+   436 ;;		On entry : 0/0
+   437 ;;		On exit  : 0/0
+   438 ;;		Unchanged: 0/0
+   439 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   440 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   441 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   442 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   443 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   444 ;;Total ram usage:        0 bytes
+   445 ;; Hardware stack levels required when called: 4
+   446 ;; This function calls:
+   447 ;;		_application_initialize
+   448 ;;		_button_read_state
+   449 ;;		_led_turn_off
+   450 ;;		_led_turn_on
+   451 ;;		_relay_turn_off
+   452 ;;		_relay_turn_on
+   453 ;; This function is called by:
+   454 ;;		Startup code after reset
+   455 ;; This function uses a non-reentrant model
+   456 ;;
+   457                           
+   458                           	psect	text0
+   459   001002                     __ptext0:
+   460                           	callstack 0
+   461   001002                     _main:
+   462                           	callstack 27
+   463   001002                     
+   464                           ;application.c: 107:     application_initialize();
+   465   001002  EC9C  F00A         	call	_application_initialize	;wreg free
+   466                           
+   467                           ;application.c: 108:    relay_turn_off(&relay_1);
+   468   001006  0E29               	movlw	low _relay_1
+   469   001008  6E48               	movwf	relay_turn_off@_relay^0,c
+   470   00100A  EC79  F00B         	call	_relay_turn_off	;wreg free
+   471   00100E                     l1493:
+   472                           
+   473                           ;application.c: 112:         ret = button_read_state(&btn_high, &btn_status_high);
+   474   00100E  0E26               	movlw	low _btn_high
+   475   001010  6E46               	movwf	button_read_state@btn^0,c
+   476   001012  0E3F               	movlw	low _btn_status_high
+   477   001014  6E47               	movwf	button_read_state@btn_state^0,c
+   478   001016  ECF6  F009         	call	_button_read_state	;wreg free
+   479   00101A  6E4E               	movwf	_ret^0,c
+   480   00101C                     
+   481                           ;application.c: 113:         ret = button_read_state(&btn_low, &btn_status_low);
+   482   00101C  0E23               	movlw	low _btn_low
+   483   00101E  6E46               	movwf	button_read_state@btn^0,c
+   484   001020  0E3E               	movlw	low _btn_status_low
+   485   001022  6E47               	movwf	button_read_state@btn_state^0,c
+   486   001024  ECF6  F009         	call	_button_read_state	;wreg free
+   487   001028  6E4E               	movwf	_ret^0,c
+   488   00102A                     
+   489                           ;application.c: 134:         if (BUTTON_PRESSED == btn_status_high) {
+   490   00102A  503F               	movf	_btn_status_high^0,w,c
+   491   00102C  A4D8               	btfss	status,2,c
+   492   00102E  EF1B  F008         	goto	u951
+   493   001032  EF1D  F008         	goto	u950
+   494   001036                     u951:
+   495   001036  EF2E  F008         	goto	l1505
+   496   00103A                     u950:
+   497   00103A                     
+   498                           ;application.c: 135:             btn_high_valid++;
+   499   00103A  4A34               	infsnz	_btn_high_valid^0,f,c
+   500   00103C  2A35               	incf	(_btn_high_valid+1)^0,f,c
+   501   00103E                     
+   502                           ;application.c: 136:             if (btn_high_valid > 500) {
+   503   00103E  0EF5               	movlw	245
+   504   001040  5C34               	subwf	_btn_high_valid^0,w,c
+   505   001042  0E01               	movlw	1
+   506   001044  5835               	subwfb	(_btn_high_valid+1)^0,w,c
+   507   001046  A0D8               	btfss	status,0,c
+   508   001048  EF28  F008         	goto	u961
+   509   00104C  EF2A  F008         	goto	u960
+   510   001050                     u961:
+   511   001050  EF34  F008         	goto	l1507
+   512   001054                     u960:
+   513   001054                     
+   514                           ;application.c: 137:                 btn_high_valid_status = BUTTON_PRESSED;
+   515   001054  0E00               	movlw	0
+   516   001056  6E22               	movwf	_btn_high_valid_status^0,c
+   517   001058  EF34  F008         	goto	l1507
+   518   00105C                     l1505:
+   519                           
+   520                           ;application.c: 141:             btn_high_valid = 0;
+   521   00105C  0E00               	movlw	0
+   522   00105E  6E35               	movwf	(_btn_high_valid+1)^0,c
+   523   001060  0E00               	movlw	0
+   524   001062  6E34               	movwf	_btn_high_valid^0,c
+   525                           
+   526                           ;application.c: 142:             btn_high_valid_status = BUTTON_RELEASED;
+   527   001064  0E01               	movlw	1
+   528   001066  6E22               	movwf	_btn_high_valid_status^0,c
+   529   001068                     l1507:
+   530                           
+   531                           ;application.c: 145:         if (btn_high_valid_status != btn_high_last_valid_status) {
+   532   001068  5021               	movf	_btn_high_last_valid_status^0,w,c
+   533   00106A  1822               	xorwf	_btn_high_valid_status^0,w,c
+   534   00106C  B4D8               	btfsc	status,2,c
+   535   00106E  EF3B  F008         	goto	u971
+   536   001072  EF3D  F008         	goto	u970
+   537   001076                     u971:
+   538   001076  EF8D  F008         	goto	l1527
+   539   00107A                     u970:
+   540   00107A                     
+   541                           ;application.c: 146:             btn_high_last_valid_status = btn_high_valid_status;
+   542   00107A  C022  F021         	movff	_btn_high_valid_status,_btn_high_last_valid_status
+   543   00107E                     
+   544                           ;application.c: 147:             if ((BUTTON_PRESSED == btn_high_valid_status) && (0 == 
+      +                          flag)) {
+   545   00107E  5022               	movf	_btn_high_valid_status^0,w,c
+   546   001080  A4D8               	btfss	status,2,c
+   547   001082  EF45  F008         	goto	u981
+   548   001086  EF47  F008         	goto	u980
+   549   00108A                     u981:
+   550   00108A  EF67  F008         	goto	l1519
+   551   00108E                     u980:
+   552   00108E  5039               	movf	_flag^0,w,c
+   553   001090  A4D8               	btfss	status,2,c
+   554   001092  EF4D  F008         	goto	u991
+   555   001096  EF4F  F008         	goto	u990
+   556   00109A                     u991:
+   557   00109A  EF67  F008         	goto	l1519
+   558   00109E                     u990:
+   559   00109E                     
+   560                           ;application.c: 148:                 led_turn_on(&led_1);
+   561   00109E  0E31               	movlw	low _led_1
+   562   0010A0  6E48               	movwf	led_turn_on@led^0,c
+   563   0010A2  ECAE  F00B         	call	_led_turn_on	;wreg free
+   564                           
+   565                           ;application.c: 149:                 led_turn_on(&led_2);
+   566   0010A6  0E30               	movlw	low _led_2
+   567   0010A8  6E48               	movwf	led_turn_on@led^0,c
+   568   0010AA  ECAE  F00B         	call	_led_turn_on	;wreg free
+   569                           
+   570                           ;application.c: 150:                 led_turn_on(&led_3);
+   571   0010AE  0E2F               	movlw	low _led_3
+   572   0010B0  6E48               	movwf	led_turn_on@led^0,c
+   573   0010B2  ECAE  F00B         	call	_led_turn_on	;wreg free
+   574                           
+   575                           ;application.c: 151:                 led_turn_on(&led_4);
+   576   0010B6  0E2E               	movlw	low _led_4
+   577   0010B8  6E48               	movwf	led_turn_on@led^0,c
+   578   0010BA  ECAE  F00B         	call	_led_turn_on	;wreg free
+   579                           
+   580                           ;application.c: 152:                 relay_turn_on(&relay_1);
+   581   0010BE  0E29               	movlw	low _relay_1
+   582   0010C0  6E48               	movwf	relay_turn_on@_relay^0,c
+   583   0010C2  EC44  F00B         	call	_relay_turn_on	;wreg free
+   584   0010C6                     
+   585                           ;application.c: 154:                 flag = 1;
+   586   0010C6  0E01               	movlw	1
+   587   0010C8  6E39               	movwf	_flag^0,c
+   588                           
+   589                           ;application.c: 155:             } else if ((BUTTON_PRESSED == btn_high_valid_status) &&
+      +                           (1 == flag)) {
+   590   0010CA  EF8D  F008         	goto	l1527
+   591   0010CE                     l1519:
+   592   0010CE  5022               	movf	_btn_high_valid_status^0,w,c
+   593   0010D0  A4D8               	btfss	status,2,c
+   594   0010D2  EF6D  F008         	goto	u1001
+   595   0010D6  EF6F  F008         	goto	u1000
+   596   0010DA                     u1001:
+   597   0010DA  EF8D  F008         	goto	l1527
+   598   0010DE                     u1000:
+   599   0010DE  0439               	decf	_flag^0,w,c
+   600   0010E0  A4D8               	btfss	status,2,c
+   601   0010E2  EF75  F008         	goto	u1011
+   602   0010E6  EF77  F008         	goto	u1010
+   603   0010EA                     u1011:
+   604   0010EA  EF8D  F008         	goto	l1527
+   605   0010EE                     u1010:
+   606   0010EE                     
+   607                           ;application.c: 156:                 led_turn_off(&led_1);
+   608   0010EE  0E31               	movlw	low _led_1
+   609   0010F0  6E48               	movwf	led_turn_off@led^0,c
+   610   0010F2  ECE3  F00B         	call	_led_turn_off	;wreg free
+   611                           
+   612                           ;application.c: 157:                 led_turn_off(&led_2);
+   613   0010F6  0E30               	movlw	low _led_2
+   614   0010F8  6E48               	movwf	led_turn_off@led^0,c
+   615   0010FA  ECE3  F00B         	call	_led_turn_off	;wreg free
+   616                           
+   617                           ;application.c: 158:                 led_turn_off(&led_3);
+   618   0010FE  0E2F               	movlw	low _led_3
+   619   001100  6E48               	movwf	led_turn_off@led^0,c
+   620   001102  ECE3  F00B         	call	_led_turn_off	;wreg free
+   621                           
+   622                           ;application.c: 159:                 led_turn_off(&led_4);
+   623   001106  0E2E               	movlw	low _led_4
+   624   001108  6E48               	movwf	led_turn_off@led^0,c
+   625   00110A  ECE3  F00B         	call	_led_turn_off	;wreg free
+   626                           
+   627                           ;application.c: 160:                 relay_turn_off(&relay_1);
+   628   00110E  0E29               	movlw	low _relay_1
+   629   001110  6E48               	movwf	relay_turn_off@_relay^0,c
+   630   001112  EC79  F00B         	call	_relay_turn_off	;wreg free
+   631   001116                     
+   632                           ;application.c: 162:                 flag = 0;
+   633   001116  0E00               	movlw	0
+   634   001118  6E39               	movwf	_flag^0,c
+   635   00111A                     l1527:
+   636                           
+   637                           ;application.c: 166:         if (BUTTON_PRESSED == btn_status_low) {
+   638   00111A  503E               	movf	_btn_status_low^0,w,c
+   639   00111C  A4D8               	btfss	status,2,c
+   640   00111E  EF93  F008         	goto	u1021
+   641   001122  EF95  F008         	goto	u1020
+   642   001126                     u1021:
+   643   001126  EFA6  F008         	goto	l1535
+   644   00112A                     u1020:
+   645   00112A                     
+   646                           ;application.c: 167:             btn_low_valid++;
+   647   00112A  4A32               	infsnz	_btn_low_valid^0,f,c
+   648   00112C  2A33               	incf	(_btn_low_valid+1)^0,f,c
+   649   00112E                     
+   650                           ;application.c: 168:             if (btn_low_valid > 200) {
+   651   00112E  5033               	movf	(_btn_low_valid+1)^0,w,c
+   652   001130  E109               	bnz	u1030
+   653   001132  0EC9               	movlw	201
+   654   001134  5C32               	subwf	_btn_low_valid^0,w,c
+   655   001136  A0D8               	btfss	status,0,c
+   656   001138  EFA0  F008         	goto	u1031
+   657   00113C  EFA2  F008         	goto	u1030
+   658   001140                     u1031:
+   659   001140  EFAC  F008         	goto	l1537
+   660   001144                     u1030:
+   661   001144                     
+   662                           ;application.c: 169:                 btn_low_valid_status = BUTTON_PRESSED;
+   663   001144  0E00               	movlw	0
+   664   001146  6E20               	movwf	_btn_low_valid_status^0,c
+   665   001148  EFAC  F008         	goto	l1537
+   666   00114C                     l1535:
+   667                           
+   668                           ;application.c: 173:             btn_low_valid = 0;
+   669   00114C  0E00               	movlw	0
+   670   00114E  6E33               	movwf	(_btn_low_valid+1)^0,c
+   671   001150  0E00               	movlw	0
+   672   001152  6E32               	movwf	_btn_low_valid^0,c
+   673                           
+   674                           ;application.c: 174:             btn_low_valid_status = BUTTON_RELEASED;
+   675   001154  0E01               	movlw	1
+   676   001156  6E20               	movwf	_btn_low_valid_status^0,c
+   677   001158                     l1537:
+   678                           
+   679                           ;application.c: 177:         if (btn_low_valid_status != btn_low_last_valid_status) {
+   680   001158  501F               	movf	_btn_low_last_valid_status^0,w,c
+   681   00115A  1820               	xorwf	_btn_low_valid_status^0,w,c
+   682   00115C  B4D8               	btfsc	status,2,c
+   683   00115E  EFB3  F008         	goto	u1041
+   684   001162  EFB5  F008         	goto	u1040
+   685   001166                     u1041:
+   686   001166  EF07  F008         	goto	l1493
+   687   00116A                     u1040:
+   688   00116A                     
+   689                           ;application.c: 178:             btn_low_last_valid_status = btn_low_valid_status;
+   690   00116A  C020  F01F         	movff	_btn_low_valid_status,_btn_low_last_valid_status
+   691   00116E                     
+   692                           ;application.c: 179:             if (BUTTON_PRESSED == btn_low_valid_status) {
+   693   00116E  5020               	movf	_btn_low_valid_status^0,w,c
+   694   001170  A4D8               	btfss	status,2,c
+   695   001172  EFBD  F008         	goto	u1051
+   696   001176  EFBF  F008         	goto	u1050
+   697   00117A                     u1051:
+   698   00117A  EFD1  F008         	goto	l1545
+   699   00117E                     u1050:
+   700   00117E                     
+   701                           ;application.c: 180:                 led_turn_on(&led_5);
+   702   00117E  0E2D               	movlw	low _led_5
+   703   001180  6E48               	movwf	led_turn_on@led^0,c
+   704   001182  ECAE  F00B         	call	_led_turn_on	;wreg free
+   705                           
+   706                           ;application.c: 181:                 led_turn_on(&led_6);
+   707   001186  0E2C               	movlw	low _led_6
+   708   001188  6E48               	movwf	led_turn_on@led^0,c
+   709   00118A  ECAE  F00B         	call	_led_turn_on	;wreg free
+   710                           
+   711                           ;application.c: 182:                 led_turn_on(&led_7);
+   712   00118E  0E2B               	movlw	low _led_7
+   713   001190  6E48               	movwf	led_turn_on@led^0,c
+   714   001192  ECAE  F00B         	call	_led_turn_on	;wreg free
+   715                           
+   716                           ;application.c: 183:                 led_turn_on(&led_8);
+   717   001196  0E2A               	movlw	low _led_8
+   718   001198  6E48               	movwf	led_turn_on@led^0,c
+   719   00119A  ECAE  F00B         	call	_led_turn_on	;wreg free
+   720                           
+   721                           ;application.c: 185:             } else {
+   722   00119E  EF07  F008         	goto	l1493
+   723   0011A2                     l1545:
+   724                           
+   725                           ;application.c: 186:                 led_turn_off(&led_5);
+   726   0011A2  0E2D               	movlw	low _led_5
+   727   0011A4  6E48               	movwf	led_turn_off@led^0,c
+   728   0011A6  ECE3  F00B         	call	_led_turn_off	;wreg free
+   729                           
+   730                           ;application.c: 187:                 led_turn_off(&led_6);
+   731   0011AA  0E2C               	movlw	low _led_6
+   732   0011AC  6E48               	movwf	led_turn_off@led^0,c
+   733   0011AE  ECE3  F00B         	call	_led_turn_off	;wreg free
+   734                           
+   735                           ;application.c: 188:                 led_turn_off(&led_7);
+   736   0011B2  0E2B               	movlw	low _led_7
+   737   0011B4  6E48               	movwf	led_turn_off@led^0,c
+   738   0011B6  ECE3  F00B         	call	_led_turn_off	;wreg free
+   739                           
+   740                           ;application.c: 189:                 led_turn_off(&led_8);
+   741   0011BA  0E2A               	movlw	low _led_8
+   742   0011BC  6E48               	movwf	led_turn_off@led^0,c
+   743   0011BE  ECE3  F00B         	call	_led_turn_off	;wreg free
+   744   0011C2  EF07  F008         	goto	l1493
+   745   0011C6  EF00  F000         	goto	start
+   746   0011CA                     __end_of_main:
+   747                           	callstack 0
+   748                           
+   749 ;; *************** function _relay_turn_on *****************
+   750 ;; Defined at:
+   751 ;;		line 37 in file "ECU_Layer/Relay/ecu_relay.c"
+   752 ;; Parameters:    Size  Location     Type
+   753 ;;  _relay          1    8[COMRAM] PTR const struct .
+   754 ;;		 -> relay_1(1), 
+   755 ;; Auto vars:     Size  Location     Type
+   756 ;;  pin_obj         1   10[COMRAM] struct .
+   757 ;;  ret             1    0        unsigned char 
+   758 ;; Return value:  Size  Location     Type
+   759 ;;                  1    wreg      unsigned char 
+   760 ;; Registers used:
+   761 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   762 ;; Tracked objects:
+   763 ;;		On entry : 0/0
+   764 ;;		On exit  : 0/0
+   765 ;;		Unchanged: 0/0
+   766 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   767 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   768 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   769 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   770 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   771 ;;Total ram usage:        3 bytes
+   772 ;; Hardware stack levels used: 1
+   773 ;; Hardware stack levels required when called: 1
+   774 ;; This function calls:
+   775 ;;		_gpio_pin_write_logic
+   776 ;; This function is called by:
+   777 ;;		_main
+   778 ;; This function uses a non-reentrant model
+   779 ;;
+   780                           
+   781                           	psect	text1
+   782   001688                     __ptext1:
+   783                           	callstack 0
+   784   001688                     _relay_turn_on:
+   785                           	callstack 29
+   786   001688                     
+   787                           ;ECU_Layer/Relay/ecu_relay.c: 39:     if (((void*)0) == _relay) {
+   788   001688  5048               	movf	relay_turn_on@_relay^0,w,c
+   789   00168A  A4D8               	btfss	status,2,c
+   790   00168C  EF4A  F00B         	goto	u931
+   791   001690  EF4C  F00B         	goto	u930
+   792   001694                     u931:
+   793   001694  EF4E  F00B         	goto	l270
+   794   001698                     u930:
+   795   001698                     
+   796                           ;ECU_Layer/Relay/ecu_relay.c: 41:     } else {
+   797   001698  EF78  F00B         	goto	l274
+   798   00169C                     l270:
+   799                           
+   800                           ;ECU_Layer/Relay/ecu_relay.c: 42:         pin_config_t pin_obj = {
+   801   00169C  C037  F04A         	movff	relay_turn_on@F3142,relay_turn_on@pin_obj
+   802   0016A0  5048               	movf	relay_turn_on@_relay^0,w,c
+   803   0016A2  6ED9               	movwf	fsr2l,c
+   804   0016A4  6ADA               	clrf	fsr2h,c
+   805   0016A6  50DF               	movf	223,w,c
+   806   0016A8  0B0F               	andlw	15
+   807   0016AA  6E49               	movwf	??_relay_turn_on^0,c
+   808   0016AC  504A               	movf	relay_turn_on@pin_obj^0,w,c
+   809   0016AE  1849               	xorwf	??_relay_turn_on^0,w,c
+   810   0016B0  0BF8               	andlw	-8
+   811   0016B2  1849               	xorwf	??_relay_turn_on^0,w,c
+   812   0016B4  6E4A               	movwf	relay_turn_on@pin_obj^0,c
+   813   0016B6  5048               	movf	relay_turn_on@_relay^0,w,c
+   814   0016B8  6ED9               	movwf	fsr2l,c
+   815   0016BA  6ADA               	clrf	fsr2h,c
+   816   0016BC  38DF               	swapf	223,w,c
+   817   0016BE  0B07               	andlw	7
+   818   0016C0  6E49               	movwf	??_relay_turn_on^0,c
+   819   0016C2  4649               	rlncf	??_relay_turn_on^0,f,c
+   820   0016C4  4649               	rlncf	??_relay_turn_on^0,f,c
+   821   0016C6  4649               	rlncf	??_relay_turn_on^0,f,c
+   822   0016C8  504A               	movf	relay_turn_on@pin_obj^0,w,c
+   823   0016CA  1849               	xorwf	??_relay_turn_on^0,w,c
+   824   0016CC  0BC7               	andlw	-57
+   825   0016CE  1849               	xorwf	??_relay_turn_on^0,w,c
+   826   0016D0  6E4A               	movwf	relay_turn_on@pin_obj^0,c
+   827   0016D2  9C4A               	bcf	relay_turn_on@pin_obj^0,6,c
+   828   0016D4  5048               	movf	relay_turn_on@_relay^0,w,c
+   829   0016D6  6ED9               	movwf	fsr2l,c
+   830   0016D8  6ADA               	clrf	fsr2h,c
+   831   0016DA  AEDF               	btfss	indf2,7,c
+   832   0016DC  D002               	bra	u945
+   833   0016DE  8E4A               	bsf	relay_turn_on@pin_obj^0,7,c
+   834   0016E0  D001               	bra	u947
+   835   0016E2                     u945:
+   836   0016E2  9E4A               	bcf	relay_turn_on@pin_obj^0,7,c
+   837   0016E4                     u947:
+   838   0016E4                     
+   839                           ;ECU_Layer/Relay/ecu_relay.c: 48:         gpio_pin_write_logic(&pin_obj, GPIO_HIGH);
+   840   0016E4  0E4A               	movlw	low relay_turn_on@pin_obj
+   841   0016E6  6E40               	movwf	gpio_pin_write_logic@pin_config^0,c
+   842   0016E8  0E01               	movlw	1
+   843   0016EA  6E41               	movwf	gpio_pin_write_logic@logic^0,c
+   844   0016EC  EC6E  F009         	call	_gpio_pin_write_logic	;wreg free
+   845   0016F0                     l274:
+   846   0016F0  0012               	return		;funcret
+   847   0016F2                     __end_of_relay_turn_on:
+   848                           	callstack 0
+   849                           
+   850 ;; *************** function _relay_turn_off *****************
+   851 ;; Defined at:
+   852 ;;		line 59 in file "ECU_Layer/Relay/ecu_relay.c"
+   853 ;; Parameters:    Size  Location     Type
+   854 ;;  _relay          1    8[COMRAM] PTR const struct .
+   855 ;;		 -> relay_1(1), 
+   856 ;; Auto vars:     Size  Location     Type
+   857 ;;  pin_obj         1   10[COMRAM] struct .
+   858 ;;  ret             1    0        unsigned char 
+   859 ;; Return value:  Size  Location     Type
+   860 ;;                  1    wreg      unsigned char 
+   861 ;; Registers used:
+   862 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   863 ;; Tracked objects:
+   864 ;;		On entry : 0/0
+   865 ;;		On exit  : 0/0
+   866 ;;		Unchanged: 0/0
+   867 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   868 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   869 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   870 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   871 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   872 ;;Total ram usage:        3 bytes
+   873 ;; Hardware stack levels used: 1
+   874 ;; Hardware stack levels required when called: 1
+   875 ;; This function calls:
+   876 ;;		_gpio_pin_write_logic
+   877 ;; This function is called by:
+   878 ;;		_main
+   879 ;; This function uses a non-reentrant model
+   880 ;;
+   881                           
+   882                           	psect	text2
+   883   0016F2                     __ptext2:
+   884                           	callstack 0
+   885   0016F2                     _relay_turn_off:
+   886                           	callstack 29
+   887   0016F2                     
+   888                           ;ECU_Layer/Relay/ecu_relay.c: 62:     if (((void*)0) == _relay) {
+   889   0016F2  5048               	movf	relay_turn_off@_relay^0,w,c
+   890   0016F4  A4D8               	btfss	status,2,c
+   891   0016F6  EF7F  F00B         	goto	u911
+   892   0016FA  EF81  F00B         	goto	u910
+   893   0016FE                     u911:
+   894   0016FE  EF83  F00B         	goto	l277
+   895   001702                     u910:
+   896   001702                     
+   897                           ;ECU_Layer/Relay/ecu_relay.c: 64:     } else {
+   898   001702  EFAD  F00B         	goto	l281
+   899   001706                     l277:
+   900                           
+   901                           ;ECU_Layer/Relay/ecu_relay.c: 65:         pin_config_t pin_obj = {
+   902   001706  C036  F04A         	movff	relay_turn_off@F3147,relay_turn_off@pin_obj
+   903   00170A  5048               	movf	relay_turn_off@_relay^0,w,c
+   904   00170C  6ED9               	movwf	fsr2l,c
+   905   00170E  6ADA               	clrf	fsr2h,c
+   906   001710  50DF               	movf	223,w,c
+   907   001712  0B0F               	andlw	15
+   908   001714  6E49               	movwf	??_relay_turn_off^0,c
+   909   001716  504A               	movf	relay_turn_off@pin_obj^0,w,c
+   910   001718  1849               	xorwf	??_relay_turn_off^0,w,c
+   911   00171A  0BF8               	andlw	-8
+   912   00171C  1849               	xorwf	??_relay_turn_off^0,w,c
+   913   00171E  6E4A               	movwf	relay_turn_off@pin_obj^0,c
+   914   001720  5048               	movf	relay_turn_off@_relay^0,w,c
+   915   001722  6ED9               	movwf	fsr2l,c
+   916   001724  6ADA               	clrf	fsr2h,c
+   917   001726  38DF               	swapf	223,w,c
+   918   001728  0B07               	andlw	7
+   919   00172A  6E49               	movwf	??_relay_turn_off^0,c
+   920   00172C  4649               	rlncf	??_relay_turn_off^0,f,c
+   921   00172E  4649               	rlncf	??_relay_turn_off^0,f,c
+   922   001730  4649               	rlncf	??_relay_turn_off^0,f,c
+   923   001732  504A               	movf	relay_turn_off@pin_obj^0,w,c
+   924   001734  1849               	xorwf	??_relay_turn_off^0,w,c
+   925   001736  0BC7               	andlw	-57
+   926   001738  1849               	xorwf	??_relay_turn_off^0,w,c
+   927   00173A  6E4A               	movwf	relay_turn_off@pin_obj^0,c
+   928   00173C  9C4A               	bcf	relay_turn_off@pin_obj^0,6,c
+   929   00173E  5048               	movf	relay_turn_off@_relay^0,w,c
+   930   001740  6ED9               	movwf	fsr2l,c
+   931   001742  6ADA               	clrf	fsr2h,c
+   932   001744  AEDF               	btfss	indf2,7,c
+   933   001746  D002               	bra	u925
+   934   001748  8E4A               	bsf	relay_turn_off@pin_obj^0,7,c
+   935   00174A  D001               	bra	u927
+   936   00174C                     u925:
+   937   00174C  9E4A               	bcf	relay_turn_off@pin_obj^0,7,c
+   938   00174E                     u927:
+   939   00174E                     
+   940                           ;ECU_Layer/Relay/ecu_relay.c: 71:         gpio_pin_write_logic(&pin_obj, GPIO_LOW);
+   941   00174E  0E4A               	movlw	low relay_turn_off@pin_obj
+   942   001750  6E40               	movwf	gpio_pin_write_logic@pin_config^0,c
+   943   001752  0E00               	movlw	0
+   944   001754  6E41               	movwf	gpio_pin_write_logic@logic^0,c
+   945   001756  EC6E  F009         	call	_gpio_pin_write_logic	;wreg free
+   946   00175A                     l281:
+   947   00175A  0012               	return		;funcret
+   948   00175C                     __end_of_relay_turn_off:
+   949                           	callstack 0
+   950                           
+   951 ;; *************** function _led_turn_on *****************
+   952 ;; Defined at:
+   953 ;;		line 38 in file "ECU_Layer/LED/ecu_led.c"
+   954 ;; Parameters:    Size  Location     Type
+   955 ;;  led             1    8[COMRAM] PTR const struct .
+   956 ;;		 -> led_8(1), led_7(1), led_6(1), led_5(1), 
+   957 ;;		 -> led_4(1), led_3(1), led_2(1), led_1(1), 
+   958 ;; Auto vars:     Size  Location     Type
+   959 ;;  pin_obj         1   10[COMRAM] struct .
+   960 ;;  ret             1    0        unsigned char 
+   961 ;; Return value:  Size  Location     Type
+   962 ;;                  1    wreg      unsigned char 
+   963 ;; Registers used:
+   964 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+   965 ;; Tracked objects:
+   966 ;;		On entry : 0/0
+   967 ;;		On exit  : 0/0
+   968 ;;		Unchanged: 0/0
+   969 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   970 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   971 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   972 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   973 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   974 ;;Total ram usage:        3 bytes
+   975 ;; Hardware stack levels used: 1
+   976 ;; Hardware stack levels required when called: 1
+   977 ;; This function calls:
+   978 ;;		_gpio_pin_write_logic
+   979 ;; This function is called by:
+   980 ;;		_main
+   981 ;; This function uses a non-reentrant model
+   982 ;;
+   983                           
+   984                           	psect	text3
+   985   00175C                     __ptext3:
+   986                           	callstack 0
+   987   00175C                     _led_turn_on:
+   988                           	callstack 29
+   989   00175C                     
+   990                           ;ECU_Layer/LED/ecu_led.c: 40:     if (((void*)0) == led) {
+   991   00175C  5048               	movf	led_turn_on@led^0,w,c
+   992   00175E  A4D8               	btfss	status,2,c
+   993   001760  EFB4  F00B         	goto	u871
+   994   001764  EFB6  F00B         	goto	u870
+   995   001768                     u871:
+   996   001768  EFB8  F00B         	goto	l39
+   997   00176C                     u870:
+   998   00176C                     
+   999                           ;ECU_Layer/LED/ecu_led.c: 42:     } else {
+  1000   00176C  EFE2  F00B         	goto	l43
+  1001   001770                     l39:
+  1002                           
+  1003                           ;ECU_Layer/LED/ecu_led.c: 43:         pin_config_t pin_obj = {.port = led->port_name,
+  1004   001770  C03C  F04A         	movff	led_turn_on@F3148,led_turn_on@pin_obj
+  1005   001774  5048               	movf	led_turn_on@led^0,w,c
+  1006   001776  6ED9               	movwf	fsr2l,c
+  1007   001778  6ADA               	clrf	fsr2h,c
+  1008   00177A  50DF               	movf	223,w,c
+  1009   00177C  0B0F               	andlw	15
+  1010   00177E  6E49               	movwf	??_led_turn_on^0,c
+  1011   001780  504A               	movf	led_turn_on@pin_obj^0,w,c
+  1012   001782  1849               	xorwf	??_led_turn_on^0,w,c
+  1013   001784  0BF8               	andlw	-8
+  1014   001786  1849               	xorwf	??_led_turn_on^0,w,c
+  1015   001788  6E4A               	movwf	led_turn_on@pin_obj^0,c
+  1016   00178A  5048               	movf	led_turn_on@led^0,w,c
+  1017   00178C  6ED9               	movwf	fsr2l,c
+  1018   00178E  6ADA               	clrf	fsr2h,c
+  1019   001790  38DF               	swapf	223,w,c
+  1020   001792  0B07               	andlw	7
+  1021   001794  6E49               	movwf	??_led_turn_on^0,c
+  1022   001796  4649               	rlncf	??_led_turn_on^0,f,c
+  1023   001798  4649               	rlncf	??_led_turn_on^0,f,c
+  1024   00179A  4649               	rlncf	??_led_turn_on^0,f,c
+  1025   00179C  504A               	movf	led_turn_on@pin_obj^0,w,c
+  1026   00179E  1849               	xorwf	??_led_turn_on^0,w,c
+  1027   0017A0  0BC7               	andlw	-57
+  1028   0017A2  1849               	xorwf	??_led_turn_on^0,w,c
+  1029   0017A4  6E4A               	movwf	led_turn_on@pin_obj^0,c
+  1030   0017A6  9C4A               	bcf	led_turn_on@pin_obj^0,6,c
+  1031   0017A8  5048               	movf	led_turn_on@led^0,w,c
+  1032   0017AA  6ED9               	movwf	fsr2l,c
+  1033   0017AC  6ADA               	clrf	fsr2h,c
+  1034   0017AE  AEDF               	btfss	indf2,7,c
+  1035   0017B0  D002               	bra	u885
+  1036   0017B2  8E4A               	bsf	led_turn_on@pin_obj^0,7,c
+  1037   0017B4  D001               	bra	u887
+  1038   0017B6                     u885:
+  1039   0017B6  9E4A               	bcf	led_turn_on@pin_obj^0,7,c
+  1040   0017B8                     u887:
+  1041   0017B8  0E4A               	movlw	low led_turn_on@pin_obj
+  1042   0017BA  6E40               	movwf	gpio_pin_write_logic@pin_config^0,c
+  1043   0017BC  0E01               	movlw	1
+  1044   0017BE  6E41               	movwf	gpio_pin_write_logic@logic^0,c
+  1045   0017C0  EC6E  F009         	call	_gpio_pin_write_logic	;wreg free
+  1046   0017C4                     l43:
+  1047   0017C4  0012               	return		;funcret
+  1048   0017C6                     __end_of_led_turn_on:
+  1049                           	callstack 0
+  1050                           
+  1051 ;; *************** function _led_turn_off *****************
+  1052 ;; Defined at:
+  1053 ;;		line 59 in file "ECU_Layer/LED/ecu_led.c"
+  1054 ;; Parameters:    Size  Location     Type
+  1055 ;;  led             1    8[COMRAM] PTR const struct .
+  1056 ;;		 -> led_8(1), led_7(1), led_6(1), led_5(1), 
+  1057 ;;		 -> led_4(1), led_3(1), led_2(1), led_1(1), 
+  1058 ;; Auto vars:     Size  Location     Type
+  1059 ;;  pin_obj         1   10[COMRAM] struct .
+  1060 ;;  ret             1    0        unsigned char 
+  1061 ;; Return value:  Size  Location     Type
+  1062 ;;                  1    wreg      unsigned char 
+  1063 ;; Registers used:
+  1064 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  1065 ;; Tracked objects:
+  1066 ;;		On entry : 0/0
+  1067 ;;		On exit  : 0/0
+  1068 ;;		Unchanged: 0/0
+  1069 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1070 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1071 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1072 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1073 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1074 ;;Total ram usage:        3 bytes
+  1075 ;; Hardware stack levels used: 1
+  1076 ;; Hardware stack levels required when called: 1
+  1077 ;; This function calls:
+  1078 ;;		_gpio_pin_write_logic
+  1079 ;; This function is called by:
+  1080 ;;		_main
+  1081 ;; This function uses a non-reentrant model
+  1082 ;;
+  1083                           
+  1084                           	psect	text4
+  1085   0017C6                     __ptext4:
+  1086                           	callstack 0
+  1087   0017C6                     _led_turn_off:
+  1088                           	callstack 29
+  1089   0017C6                     
+  1090                           ;ECU_Layer/LED/ecu_led.c: 61:     if (((void*)0) == led) {
+  1091   0017C6  5048               	movf	led_turn_off@led^0,w,c
+  1092   0017C8  A4D8               	btfss	status,2,c
+  1093   0017CA  EFE9  F00B         	goto	u891
+  1094   0017CE  EFEB  F00B         	goto	u890
+  1095   0017D2                     u891:
+  1096   0017D2  EFED  F00B         	goto	l46
+  1097   0017D6                     u890:
+  1098   0017D6                     
+  1099                           ;ECU_Layer/LED/ecu_led.c: 63:     } else {
+  1100   0017D6  EF17  F00C         	goto	l50
+  1101   0017DA                     l46:
+  1102                           
+  1103                           ;ECU_Layer/LED/ecu_led.c: 64:         pin_config_t pin_obj = {.port = led->port_name,
+  1104   0017DA  C03B  F04A         	movff	led_turn_off@F3153,led_turn_off@pin_obj
+  1105   0017DE  5048               	movf	led_turn_off@led^0,w,c
+  1106   0017E0  6ED9               	movwf	fsr2l,c
+  1107   0017E2  6ADA               	clrf	fsr2h,c
+  1108   0017E4  50DF               	movf	223,w,c
+  1109   0017E6  0B0F               	andlw	15
+  1110   0017E8  6E49               	movwf	??_led_turn_off^0,c
+  1111   0017EA  504A               	movf	led_turn_off@pin_obj^0,w,c
+  1112   0017EC  1849               	xorwf	??_led_turn_off^0,w,c
+  1113   0017EE  0BF8               	andlw	-8
+  1114   0017F0  1849               	xorwf	??_led_turn_off^0,w,c
+  1115   0017F2  6E4A               	movwf	led_turn_off@pin_obj^0,c
+  1116   0017F4  5048               	movf	led_turn_off@led^0,w,c
+  1117   0017F6  6ED9               	movwf	fsr2l,c
+  1118   0017F8  6ADA               	clrf	fsr2h,c
+  1119   0017FA  38DF               	swapf	223,w,c
+  1120   0017FC  0B07               	andlw	7
+  1121   0017FE  6E49               	movwf	??_led_turn_off^0,c
+  1122   001800  4649               	rlncf	??_led_turn_off^0,f,c
+  1123   001802  4649               	rlncf	??_led_turn_off^0,f,c
+  1124   001804  4649               	rlncf	??_led_turn_off^0,f,c
+  1125   001806  504A               	movf	led_turn_off@pin_obj^0,w,c
+  1126   001808  1849               	xorwf	??_led_turn_off^0,w,c
+  1127   00180A  0BC7               	andlw	-57
+  1128   00180C  1849               	xorwf	??_led_turn_off^0,w,c
+  1129   00180E  6E4A               	movwf	led_turn_off@pin_obj^0,c
+  1130   001810  9C4A               	bcf	led_turn_off@pin_obj^0,6,c
+  1131   001812  5048               	movf	led_turn_off@led^0,w,c
+  1132   001814  6ED9               	movwf	fsr2l,c
+  1133   001816  6ADA               	clrf	fsr2h,c
+  1134   001818  AEDF               	btfss	indf2,7,c
+  1135   00181A  D002               	bra	u905
+  1136   00181C  8E4A               	bsf	led_turn_off@pin_obj^0,7,c
+  1137   00181E  D001               	bra	u907
+  1138   001820                     u905:
+  1139   001820  9E4A               	bcf	led_turn_off@pin_obj^0,7,c
+  1140   001822                     u907:
+  1141   001822  0E4A               	movlw	low led_turn_off@pin_obj
+  1142   001824  6E40               	movwf	gpio_pin_write_logic@pin_config^0,c
+  1143   001826  0E00               	movlw	0
+  1144   001828  6E41               	movwf	gpio_pin_write_logic@logic^0,c
+  1145   00182A  EC6E  F009         	call	_gpio_pin_write_logic	;wreg free
+  1146   00182E                     l50:
+  1147   00182E  0012               	return		;funcret
+  1148   001830                     __end_of_led_turn_off:
+  1149                           	callstack 0
+  1150                           
+  1151 ;; *************** function _button_read_state *****************
+  1152 ;; Defined at:
+  1153 ;;		line 35 in file "ECU_Layer/button/ecu_button.c"
+  1154 ;; Parameters:    Size  Location     Type
+  1155 ;;  btn             1    6[COMRAM] PTR const struct .
+  1156 ;;		 -> btn_low(3), btn_high(3), 
+  1157 ;;  btn_state       1    7[COMRAM] PTR enum E3123
+  1158 ;;		 -> btn_status_low(1), btn_status_high(1), 
+  1159 ;; Auto vars:     Size  Location     Type
+  1160 ;;  Pin_Logic_St    1   10[COMRAM] enum E3063
+  1161 ;;  ret             1    9[COMRAM] unsigned char 
+  1162 ;; Return value:  Size  Location     Type
+  1163 ;;                  1    wreg      unsigned char 
+  1164 ;; Registers used:
+  1165 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  1166 ;; Tracked objects:
+  1167 ;;		On entry : 0/0
+  1168 ;;		On exit  : 0/0
+  1169 ;;		Unchanged: 0/0
+  1170 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1171 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1172 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1173 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1174 ;;      Totals:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1175 ;;Total ram usage:        5 bytes
+  1176 ;; Hardware stack levels used: 1
+  1177 ;; Hardware stack levels required when called: 1
+  1178 ;; This function calls:
+  1179 ;;		_gpio_pin_read_logic
+  1180 ;; This function is called by:
+  1181 ;;		_main
+  1182 ;; This function uses a non-reentrant model
+  1183 ;;
+  1184                           
+  1185                           	psect	text5
+  1186   0013EC                     __ptext5:
+  1187                           	callstack 0
+  1188   0013EC                     _button_read_state:
+  1189                           	callstack 29
+  1190   0013EC                     
+  1191                           ;ECU_Layer/button/ecu_button.c: 37:     logic_t Pin_Logic_Status = GPIO_LOW;
+  1192   0013EC  0E00               	movlw	0
+  1193   0013EE  6E4A               	movwf	button_read_state@Pin_Logic_Status^0,c
+  1194                           
+  1195                           ;ECU_Layer/button/ecu_button.c: 38:     STD_ReturnType ret = (STD_ReturnType)0x01;
+  1196   0013F0  0E01               	movlw	1
+  1197   0013F2  6E49               	movwf	button_read_state@ret^0,c
+  1198                           
+  1199                           ;ECU_Layer/button/ecu_button.c: 39:     if ((((void*)0) == btn) || (((void*)0) == btn_st
+      +                          ate)) {
+  1200   0013F4  5046               	movf	button_read_state@btn^0,w,c
+  1201   0013F6  B4D8               	btfsc	status,2,c
+  1202   0013F8  EF00  F00A         	goto	u811
+  1203   0013FC  EF02  F00A         	goto	u810
+  1204   001400                     u811:
+  1205   001400  EF0A  F00A         	goto	l1409
+  1206   001404                     u810:
+  1207   001404  5047               	movf	button_read_state@btn_state^0,w,c
+  1208   001406  A4D8               	btfss	status,2,c
+  1209   001408  EF08  F00A         	goto	u821
+  1210   00140C  EF0A  F00A         	goto	u820
+  1211   001410                     u821:
+  1212   001410  EF0E  F00A         	goto	l1411
+  1213   001414                     u820:
+  1214   001414                     l1409:
+  1215                           
+  1216                           ;ECU_Layer/button/ecu_button.c: 40:         ret = (STD_ReturnType)0x00;
+  1217   001414  0E00               	movlw	0
+  1218   001416  6E49               	movwf	button_read_state@ret^0,c
+  1219                           
+  1220                           ;ECU_Layer/button/ecu_button.c: 41:     } else {
+  1221   001418  EF4D  F00A         	goto	l1429
+  1222   00141C                     l1411:
+  1223                           
+  1224                           ;ECU_Layer/button/ecu_button.c: 42:         gpio_pin_read_logic(&(btn->button_pin), &Pin
+      +                          _Logic_Status);
+  1225   00141C  C046  F040         	movff	button_read_state@btn,gpio_pin_read_logic@pin_config
+  1226   001420  0E4A               	movlw	low button_read_state@Pin_Logic_Status
+  1227   001422  6E41               	movwf	gpio_pin_read_logic@logic_status^0,c
+  1228   001424  EC4F  F00A         	call	_gpio_pin_read_logic	;wreg free
+  1229   001428                     
+  1230                           ;ECU_Layer/button/ecu_button.c: 43:         if (BUTTON_ACTIVE_HIGH == btn->button_connec
+      +                          tion) {
+  1231   001428  5046               	movf	button_read_state@btn^0,w,c
+  1232   00142A  6ED9               	movwf	fsr2l,c
+  1233   00142C  6ADA               	clrf	fsr2h,c
+  1234   00142E  0E02               	movlw	2
+  1235   001430  26D9               	addwf	fsr2l,f,c
+  1236   001432  50DF               	movf	indf2,w,c
+  1237   001434  A4D8               	btfss	status,2,c
+  1238   001436  EF1F  F00A         	goto	u831
+  1239   00143A  EF21  F00A         	goto	u830
+  1240   00143E                     u831:
+  1241   00143E  EF36  F00A         	goto	l1421
+  1242   001442                     u830:
+  1243   001442                     
+  1244                           ;ECU_Layer/button/ecu_button.c: 44:             if (GPIO_HIGH == Pin_Logic_Status) {
+  1245   001442  044A               	decf	button_read_state@Pin_Logic_Status^0,w,c
+  1246   001444  A4D8               	btfss	status,2,c
+  1247   001446  EF27  F00A         	goto	u841
+  1248   00144A  EF29  F00A         	goto	u840
+  1249   00144E                     u841:
+  1250   00144E  EF2F  F00A         	goto	l1419
+  1251   001452                     u840:
+  1252   001452                     l1417:
+  1253                           
+  1254                           ;ECU_Layer/button/ecu_button.c: 45:                 *btn_state = BUTTON_PRESSED;
+  1255   001452  5047               	movf	button_read_state@btn_state^0,w,c
+  1256   001454  6ED9               	movwf	fsr2l,c
+  1257   001456  6ADA               	clrf	fsr2h,c
+  1258   001458  6ADF               	clrf	indf2,c
+  1259                           
+  1260                           ;ECU_Layer/button/ecu_button.c: 46:             } else {
+  1261   00145A  EF4D  F00A         	goto	l1429
+  1262   00145E                     l1419:
+  1263                           
+  1264                           ;ECU_Layer/button/ecu_button.c: 47:                 *btn_state = BUTTON_RELEASED;
+  1265   00145E  5047               	movf	button_read_state@btn_state^0,w,c
+  1266   001460  6ED9               	movwf	fsr2l,c
+  1267   001462  6ADA               	clrf	fsr2h,c
+  1268   001464  0E01               	movlw	1
+  1269   001466  6EDF               	movwf	indf2,c
+  1270   001468  EF4D  F00A         	goto	l1429
+  1271   00146C                     l1421:
+  1272   00146C  5046               	movf	button_read_state@btn^0,w,c
+  1273   00146E  6ED9               	movwf	fsr2l,c
+  1274   001470  6ADA               	clrf	fsr2h,c
+  1275   001472  0E02               	movlw	2
+  1276   001474  26D9               	addwf	fsr2l,f,c
+  1277   001476  04DE               	decf	postinc2,w,c
+  1278   001478  A4D8               	btfss	status,2,c
+  1279   00147A  EF41  F00A         	goto	u851
+  1280   00147E  EF43  F00A         	goto	u850
+  1281   001482                     u851:
+  1282   001482  EF4D  F00A         	goto	l1429
+  1283   001486                     u850:
+  1284   001486                     
+  1285                           ;ECU_Layer/button/ecu_button.c: 50:             if (GPIO_HIGH == Pin_Logic_Status) {
+  1286   001486  044A               	decf	button_read_state@Pin_Logic_Status^0,w,c
+  1287   001488  A4D8               	btfss	status,2,c
+  1288   00148A  EF49  F00A         	goto	u861
+  1289   00148E  EF4B  F00A         	goto	u860
+  1290   001492                     u861:
+  1291   001492  EF29  F00A         	goto	l1417
+  1292   001496                     u860:
+  1293   001496  EF2F  F00A         	goto	l1419
+  1294   00149A                     l1429:
+  1295                           
+  1296                           ;ECU_Layer/button/ecu_button.c: 57:     return ret;
+  1297   00149A  5049               	movf	button_read_state@ret^0,w,c
+  1298   00149C  0012               	return		;funcret
+  1299   00149E                     __end_of_button_read_state:
+  1300                           	callstack 0
+  1301                           
+  1302 ;; *************** function _gpio_pin_read_logic *****************
+  1303 ;; Defined at:
+  1304 ;;		line 102 in file "MCAL_Layer/GPIO/hal_gpio.c"
+  1305 ;; Parameters:    Size  Location     Type
+  1306 ;;  pin_config      1    0[COMRAM] PTR const struct .
+  1307 ;;		 -> btn_low(3), btn_high(3), 
+  1308 ;;  logic_status    1    1[COMRAM] PTR enum E3063
+  1309 ;;		 -> button_read_state@Pin_Logic_Status(1), 
+  1310 ;; Auto vars:     Size  Location     Type
+  1311 ;;  ret             1    0        unsigned char 
+  1312 ;; Return value:  Size  Location     Type
+  1313 ;;                  1    wreg      unsigned char 
+  1314 ;; Registers used:
+  1315 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+  1316 ;; Tracked objects:
+  1317 ;;		On entry : 0/0
+  1318 ;;		On exit  : 0/0
+  1319 ;;		Unchanged: 0/0
+  1320 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1321 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1322 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1323 ;;      Temps:          4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1324 ;;      Totals:         6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1325 ;;Total ram usage:        6 bytes
+  1326 ;; Hardware stack levels used: 1
+  1327 ;; This function calls:
+  1328 ;;		Nothing
+  1329 ;; This function is called by:
+  1330 ;;		_button_read_state
+  1331 ;; This function uses a non-reentrant model
+  1332 ;;
+  1333                           
+  1334                           	psect	text6
+  1335   00149E                     __ptext6:
+  1336                           	callstack 0
+  1337   00149E                     _gpio_pin_read_logic:
+  1338                           	callstack 29
+  1339   00149E                     
+  1340                           ;MCAL_Layer/GPIO/hal_gpio.c: 104:     if ((((void*)0) == pin_config) || (((void*)0) == l
+      +                          ogic_status) || (pin_config->pin > 8 - 1)) {
+  1341   00149E  5040               	movf	gpio_pin_read_logic@pin_config^0,w,c
+  1342   0014A0  B4D8               	btfsc	status,2,c
+  1343   0014A2  EF55  F00A         	goto	u731
+  1344   0014A6  EF57  F00A         	goto	u730
+  1345   0014AA                     u731:
+  1346   0014AA  EF6F  F00A         	goto	l1367
+  1347   0014AE                     u730:
+  1348   0014AE  5041               	movf	gpio_pin_read_logic@logic_status^0,w,c
+  1349   0014B0  B4D8               	btfsc	status,2,c
+  1350   0014B2  EF5D  F00A         	goto	u741
+  1351   0014B6  EF5F  F00A         	goto	u740
+  1352   0014BA                     u741:
+  1353   0014BA  EF6F  F00A         	goto	l1367
+  1354   0014BE                     u740:
+  1355   0014BE  5040               	movf	gpio_pin_read_logic@pin_config^0,w,c
+  1356   0014C0  6ED9               	movwf	fsr2l,c
+  1357   0014C2  6ADA               	clrf	fsr2h,c
+  1358   0014C4  30DF               	rrcf	223,w,c
+  1359   0014C6  32E8               	rrcf	wreg,f,c
+  1360   0014C8  32E8               	rrcf	wreg,f,c
+  1361   0014CA  0B07               	andlw	7
+  1362   0014CC  6E42               	movwf	??_gpio_pin_read_logic^0,c
+  1363   0014CE  0E07               	movlw	7
+  1364   0014D0  6442               	cpfsgt	??_gpio_pin_read_logic^0,c
+  1365   0014D2  EF6D  F00A         	goto	u751
+  1366   0014D6  EF6F  F00A         	goto	u750
+  1367   0014DA                     u751:
+  1368   0014DA  EF71  F00A         	goto	l1369
+  1369   0014DE                     u750:
+  1370   0014DE                     l1367:
+  1371                           
+  1372                           ;MCAL_Layer/GPIO/hal_gpio.c: 106:     } else {
+  1373   0014DE  EF9B  F00A         	goto	l131
+  1374   0014E2                     l1369:
+  1375                           
+  1376                           ;MCAL_Layer/GPIO/hal_gpio.c: 107:         *logic_status = ((*port_registers[pin_config->
+      +                          port] >> pin_config->pin) & (uint8)1);
+  1377   0014E2  5041               	movf	gpio_pin_read_logic@logic_status^0,w,c
+  1378   0014E4  6ED9               	movwf	fsr2l,c
+  1379   0014E6  6ADA               	clrf	fsr2h,c
+  1380   0014E8  5040               	movf	gpio_pin_read_logic@pin_config^0,w,c
+  1381   0014EA  6EE1               	movwf	fsr1l,c
+  1382   0014EC  6AE2               	clrf	fsr1h,c
+  1383   0014EE  30E7               	rrcf	231,w,c
+  1384   0014F0  32E8               	rrcf	wreg,f,c
+  1385   0014F2  32E8               	rrcf	wreg,f,c
+  1386   0014F4  0B07               	andlw	7
+  1387   0014F6  6E42               	movwf	??_gpio_pin_read_logic^0,c
+  1388   0014F8  5040               	movf	gpio_pin_read_logic@pin_config^0,w,c
+  1389   0014FA  6EE1               	movwf	fsr1l,c
+  1390   0014FC  6AE2               	clrf	fsr1h,c
+  1391   0014FE  50E7               	movf	231,w,c
+  1392   001500  0B07               	andlw	7
+  1393   001502  0D02               	mullw	2
+  1394   001504  50F3               	movf	243,w,c
+  1395   001506  0F01               	addlw	low _port_registers
+  1396   001508  6EE1               	movwf	fsr1l,c
+  1397   00150A  6AE2               	clrf	fsr1h,c
+  1398   00150C  CFE6 F043          	movff	postinc1,??_gpio_pin_read_logic+1
+  1399   001510  CFE5 F044          	movff	postdec1,??_gpio_pin_read_logic+2
+  1400   001514  C043  FFE1         	movff	??_gpio_pin_read_logic+1,fsr1l
+  1401   001518  C044  FFE2         	movff	??_gpio_pin_read_logic+2,fsr1h
+  1402   00151C  50E7               	movf	indf1,w,c
+  1403   00151E  6E45               	movwf	(??_gpio_pin_read_logic+3)^0,c
+  1404   001520  2A42               	incf	??_gpio_pin_read_logic^0,f,c
+  1405   001522  EF95  F00A         	goto	u764
+  1406   001526                     u765:
+  1407   001526  90D8               	bcf	status,0,c
+  1408   001528  3245               	rrcf	(??_gpio_pin_read_logic+3)^0,f,c
+  1409   00152A                     u764:
+  1410   00152A  2E42               	decfsz	??_gpio_pin_read_logic^0,f,c
+  1411   00152C  EF93  F00A         	goto	u765
+  1412   001530  5045               	movf	(??_gpio_pin_read_logic+3)^0,w,c
+  1413   001532  0B01               	andlw	1
+  1414   001534  6EDF               	movwf	indf2,c
+  1415   001536                     l131:
+  1416   001536  0012               	return		;funcret
+  1417   001538                     __end_of_gpio_pin_read_logic:
+  1418                           	callstack 0
+  1419                           
+  1420 ;; *************** function _application_initialize *****************
+  1421 ;; Defined at:
+  1422 ;;		line 226 in file "application.c"
+  1423 ;; Parameters:    Size  Location     Type
+  1424 ;;		None
+  1425 ;; Auto vars:     Size  Location     Type
+  1426 ;;		None
+  1427 ;; Return value:  Size  Location     Type
+  1428 ;;                  1    wreg      void 
+  1429 ;; Registers used:
+  1430 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  1431 ;; Tracked objects:
+  1432 ;;		On entry : 0/0
+  1433 ;;		On exit  : 0/0
+  1434 ;;		Unchanged: 0/0
+  1435 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1436 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1437 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1438 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1439 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1440 ;;Total ram usage:        0 bytes
+  1441 ;; Hardware stack levels used: 1
+  1442 ;; Hardware stack levels required when called: 3
+  1443 ;; This function calls:
+  1444 ;;		_button_initialize
+  1445 ;;		_led_initialize
+  1446 ;;		_relay_initialize
+  1447 ;; This function is called by:
+  1448 ;;		_main
+  1449 ;; This function uses a non-reentrant model
+  1450 ;;
+  1451                           
+  1452                           	psect	text7
+  1453   001538                     __ptext7:
+  1454                           	callstack 0
+  1455   001538                     _application_initialize:
+  1456                           	callstack 27
+  1457   001538                     
+  1458                           ;application.c: 228:     ret = led_initialize(&led_1);
+  1459   001538  0E31               	movlw	low _led_1
+  1460   00153A  6E4A               	movwf	led_initialize@led^0,c
+  1461   00153C  EC0C  F00B         	call	_led_initialize	;wreg free
+  1462   001540  6E4E               	movwf	_ret^0,c
+  1463                           
+  1464                           ;application.c: 229:     ret = led_initialize(&led_2);
+  1465   001542  0E30               	movlw	low _led_2
+  1466   001544  6E4A               	movwf	led_initialize@led^0,c
+  1467   001546  EC0C  F00B         	call	_led_initialize	;wreg free
+  1468   00154A  6E4E               	movwf	_ret^0,c
+  1469                           
+  1470                           ;application.c: 230:     ret = led_initialize(&led_3);
+  1471   00154C  0E2F               	movlw	low _led_3
+  1472   00154E  6E4A               	movwf	led_initialize@led^0,c
+  1473   001550  EC0C  F00B         	call	_led_initialize	;wreg free
+  1474   001554  6E4E               	movwf	_ret^0,c
+  1475                           
+  1476                           ;application.c: 231:     ret = led_initialize(&led_4);
+  1477   001556  0E2E               	movlw	low _led_4
+  1478   001558  6E4A               	movwf	led_initialize@led^0,c
+  1479   00155A  EC0C  F00B         	call	_led_initialize	;wreg free
+  1480   00155E  6E4E               	movwf	_ret^0,c
+  1481                           
+  1482                           ;application.c: 232:     ret = led_initialize(&led_5);
+  1483   001560  0E2D               	movlw	low _led_5
+  1484   001562  6E4A               	movwf	led_initialize@led^0,c
+  1485   001564  EC0C  F00B         	call	_led_initialize	;wreg free
+  1486   001568  6E4E               	movwf	_ret^0,c
+  1487                           
+  1488                           ;application.c: 233:     ret = led_initialize(&led_6);
+  1489   00156A  0E2C               	movlw	low _led_6
+  1490   00156C  6E4A               	movwf	led_initialize@led^0,c
+  1491   00156E  EC0C  F00B         	call	_led_initialize	;wreg free
+  1492   001572  6E4E               	movwf	_ret^0,c
+  1493                           
+  1494                           ;application.c: 234:     ret = led_initialize(&led_7);
+  1495   001574  0E2B               	movlw	low _led_7
+  1496   001576  6E4A               	movwf	led_initialize@led^0,c
+  1497   001578  EC0C  F00B         	call	_led_initialize	;wreg free
+  1498   00157C  6E4E               	movwf	_ret^0,c
+  1499                           
+  1500                           ;application.c: 235:     ret = led_initialize(&led_8);
+  1501   00157E  0E2A               	movlw	low _led_8
+  1502   001580  6E4A               	movwf	led_initialize@led^0,c
+  1503   001582  EC0C  F00B         	call	_led_initialize	;wreg free
+  1504   001586  6E4E               	movwf	_ret^0,c
+  1505                           
+  1506                           ;application.c: 237:     ret = button_initialize(&btn_high);
+  1507   001588  0E26               	movlw	low _btn_high
+  1508   00158A  6E47               	movwf	button_initialize@btn^0,c
+  1509   00158C  EC76  F00C         	call	_button_initialize	;wreg free
+  1510   001590  6E4E               	movwf	_ret^0,c
+  1511                           
+  1512                           ;application.c: 238:     ret = button_initialize(&btn_low);
+  1513   001592  0E23               	movlw	low _btn_low
+  1514   001594  6E47               	movwf	button_initialize@btn^0,c
+  1515   001596  EC76  F00C         	call	_button_initialize	;wreg free
+  1516   00159A  6E4E               	movwf	_ret^0,c
+  1517                           
+  1518                           ;application.c: 240:     ret = relay_initialize(&relay_1);
+  1519   00159C  0E29               	movlw	low _relay_1
+  1520   00159E  6E4A               	movwf	relay_initialize@_relay^0,c
+  1521   0015A0  ECD4  F00A         	call	_relay_initialize	;wreg free
+  1522   0015A4  6E4E               	movwf	_ret^0,c
+  1523   0015A6  0012               	return		;funcret
+  1524   0015A8                     __end_of_application_initialize:
+  1525                           	callstack 0
+  1526                           
+  1527 ;; *************** function _relay_initialize *****************
+  1528 ;; Defined at:
+  1529 ;;		line 15 in file "ECU_Layer/Relay/ecu_relay.c"
+  1530 ;; Parameters:    Size  Location     Type
+  1531 ;;  _relay          1   10[COMRAM] PTR const struct .
+  1532 ;;		 -> relay_1(1), 
+  1533 ;; Auto vars:     Size  Location     Type
+  1534 ;;  pin_obj         1   13[COMRAM] struct .
+  1535 ;;  ret             1   12[COMRAM] unsigned char 
+  1536 ;; Return value:  Size  Location     Type
+  1537 ;;                  1    wreg      unsigned char 
+  1538 ;; Registers used:
+  1539 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  1540 ;; Tracked objects:
+  1541 ;;		On entry : 0/0
+  1542 ;;		On exit  : 0/0
+  1543 ;;		Unchanged: 0/0
+  1544 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1545 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1546 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1547 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1548 ;;      Totals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1549 ;;Total ram usage:        4 bytes
+  1550 ;; Hardware stack levels used: 1
+  1551 ;; Hardware stack levels required when called: 2
+  1552 ;; This function calls:
+  1553 ;;		_gpio_pin_initialization
+  1554 ;; This function is called by:
+  1555 ;;		_application_initialize
+  1556 ;; This function uses a non-reentrant model
+  1557 ;;
+  1558                           
+  1559                           	psect	text8
+  1560   0015A8                     __ptext8:
+  1561                           	callstack 0
+  1562   0015A8                     _relay_initialize:
+  1563                           	callstack 27
+  1564   0015A8                     
+  1565                           ;ECU_Layer/Relay/ecu_relay.c: 17:     STD_ReturnType ret = (STD_ReturnType)0x01;
+  1566   0015A8  0E01               	movlw	1
+  1567   0015AA  6E4C               	movwf	relay_initialize@ret^0,c
+  1568                           
+  1569                           ;ECU_Layer/Relay/ecu_relay.c: 18:     if (((void*)0) == _relay) {
+  1570   0015AC  504A               	movf	relay_initialize@_relay^0,w,c
+  1571   0015AE  A4D8               	btfss	status,2,c
+  1572   0015B0  EFDC  F00A         	goto	u791
+  1573   0015B4  EFDE  F00A         	goto	u790
+  1574   0015B8                     u791:
+  1575   0015B8  EFE2  F00A         	goto	l263
+  1576   0015BC                     u790:
+  1577   0015BC                     
+  1578                           ;ECU_Layer/Relay/ecu_relay.c: 19:         ret = (STD_ReturnType)0x00;
+  1579   0015BC  0E00               	movlw	0
+  1580   0015BE  6E4C               	movwf	relay_initialize@ret^0,c
+  1581                           
+  1582                           ;ECU_Layer/Relay/ecu_relay.c: 20:     } else {
+  1583   0015C0  EF0A  F00B         	goto	l1401
+  1584   0015C4                     l263:
+  1585                           
+  1586                           ;ECU_Layer/Relay/ecu_relay.c: 21:         pin_config_t pin_obj = {
+  1587   0015C4  C038  F04D         	movff	relay_initialize@F3137,relay_initialize@pin_obj
+  1588   0015C8  504A               	movf	relay_initialize@_relay^0,w,c
+  1589   0015CA  6ED9               	movwf	fsr2l,c
+  1590   0015CC  6ADA               	clrf	fsr2h,c
+  1591   0015CE  50DF               	movf	223,w,c
+  1592   0015D0  0B0F               	andlw	15
+  1593   0015D2  6E4B               	movwf	??_relay_initialize^0,c
+  1594   0015D4  504D               	movf	relay_initialize@pin_obj^0,w,c
+  1595   0015D6  184B               	xorwf	??_relay_initialize^0,w,c
+  1596   0015D8  0BF8               	andlw	-8
+  1597   0015DA  184B               	xorwf	??_relay_initialize^0,w,c
+  1598   0015DC  6E4D               	movwf	relay_initialize@pin_obj^0,c
+  1599   0015DE  504A               	movf	relay_initialize@_relay^0,w,c
+  1600   0015E0  6ED9               	movwf	fsr2l,c
+  1601   0015E2  6ADA               	clrf	fsr2h,c
+  1602   0015E4  38DF               	swapf	223,w,c
+  1603   0015E6  0B07               	andlw	7
+  1604   0015E8  6E4B               	movwf	??_relay_initialize^0,c
+  1605   0015EA  464B               	rlncf	??_relay_initialize^0,f,c
+  1606   0015EC  464B               	rlncf	??_relay_initialize^0,f,c
+  1607   0015EE  464B               	rlncf	??_relay_initialize^0,f,c
+  1608   0015F0  504D               	movf	relay_initialize@pin_obj^0,w,c
+  1609   0015F2  184B               	xorwf	??_relay_initialize^0,w,c
+  1610   0015F4  0BC7               	andlw	-57
+  1611   0015F6  184B               	xorwf	??_relay_initialize^0,w,c
+  1612   0015F8  6E4D               	movwf	relay_initialize@pin_obj^0,c
+  1613   0015FA  9C4D               	bcf	relay_initialize@pin_obj^0,6,c
+  1614   0015FC  504A               	movf	relay_initialize@_relay^0,w,c
+  1615   0015FE  6ED9               	movwf	fsr2l,c
+  1616   001600  6ADA               	clrf	fsr2h,c
+  1617   001602  AEDF               	btfss	indf2,7,c
+  1618   001604  D002               	bra	u805
+  1619   001606  8E4D               	bsf	relay_initialize@pin_obj^0,7,c
+  1620   001608  D001               	bra	u807
+  1621   00160A                     u805:
+  1622   00160A  9E4D               	bcf	relay_initialize@pin_obj^0,7,c
+  1623   00160C                     u807:
+  1624   00160C                     
+  1625                           ;ECU_Layer/Relay/ecu_relay.c: 27:         gpio_pin_initialization(&pin_obj);
+  1626   00160C  0E4D               	movlw	low relay_initialize@pin_obj
+  1627   00160E  6E48               	movwf	gpio_pin_initialization@pin_config^0,c
+  1628   001610  EC18  F00C         	call	_gpio_pin_initialization	;wreg free
+  1629   001614                     l1401:
+  1630                           
+  1631                           ;ECU_Layer/Relay/ecu_relay.c: 29:     return ret;
+  1632   001614  504C               	movf	relay_initialize@ret^0,w,c
+  1633   001616  0012               	return		;funcret
+  1634   001618                     __end_of_relay_initialize:
+  1635                           	callstack 0
+  1636                           
+  1637 ;; *************** function _led_initialize *****************
+  1638 ;; Defined at:
+  1639 ;;		line 17 in file "ECU_Layer/LED/ecu_led.c"
+  1640 ;; Parameters:    Size  Location     Type
+  1641 ;;  led             1   10[COMRAM] PTR const struct .
+  1642 ;;		 -> led_8(1), led_7(1), led_6(1), led_5(1), 
+  1643 ;;		 -> led_4(1), led_3(1), led_2(1), led_1(1), 
+  1644 ;; Auto vars:     Size  Location     Type
+  1645 ;;  pin_obj         1   13[COMRAM] struct .
+  1646 ;;  ret             1   12[COMRAM] unsigned char 
+  1647 ;; Return value:  Size  Location     Type
+  1648 ;;                  1    wreg      unsigned char 
+  1649 ;; Registers used:
+  1650 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  1651 ;; Tracked objects:
+  1652 ;;		On entry : 0/0
+  1653 ;;		On exit  : 0/0
+  1654 ;;		Unchanged: 0/0
+  1655 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1656 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1657 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1658 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1659 ;;      Totals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1660 ;;Total ram usage:        4 bytes
+  1661 ;; Hardware stack levels used: 1
+  1662 ;; Hardware stack levels required when called: 2
+  1663 ;; This function calls:
+  1664 ;;		_gpio_pin_initialization
+  1665 ;; This function is called by:
+  1666 ;;		_application_initialize
+  1667 ;; This function uses a non-reentrant model
+  1668 ;;
+  1669                           
+  1670                           	psect	text9
+  1671   001618                     __ptext9:
+  1672                           	callstack 0
+  1673   001618                     _led_initialize:
+  1674                           	callstack 27
+  1675   001618                     
+  1676                           ;ECU_Layer/LED/ecu_led.c: 18:     STD_ReturnType ret = (STD_ReturnType)0x01;
+  1677   001618  0E01               	movlw	1
+  1678   00161A  6E4C               	movwf	led_initialize@ret^0,c
+  1679                           
+  1680                           ;ECU_Layer/LED/ecu_led.c: 19:     if (((void*)0) == led) {
+  1681   00161C  504A               	movf	led_initialize@led^0,w,c
+  1682   00161E  A4D8               	btfss	status,2,c
+  1683   001620  EF14  F00B         	goto	u771
+  1684   001624  EF16  F00B         	goto	u770
+  1685   001628                     u771:
+  1686   001628  EF1A  F00B         	goto	l32
+  1687   00162C                     u770:
+  1688   00162C                     
+  1689                           ;ECU_Layer/LED/ecu_led.c: 20:         ret = (STD_ReturnType)0x00;
+  1690   00162C  0E00               	movlw	0
+  1691   00162E  6E4C               	movwf	led_initialize@ret^0,c
+  1692                           
+  1693                           ;ECU_Layer/LED/ecu_led.c: 21:     } else {
+  1694   001630  EF42  F00B         	goto	l1385
+  1695   001634                     l32:
+  1696                           
+  1697                           ;ECU_Layer/LED/ecu_led.c: 22:         pin_config_t pin_obj = {.port = led->port_name,
+  1698   001634  C03D  F04D         	movff	led_initialize@F3143,led_initialize@pin_obj
+  1699   001638  504A               	movf	led_initialize@led^0,w,c
+  1700   00163A  6ED9               	movwf	fsr2l,c
+  1701   00163C  6ADA               	clrf	fsr2h,c
+  1702   00163E  50DF               	movf	223,w,c
+  1703   001640  0B0F               	andlw	15
+  1704   001642  6E4B               	movwf	??_led_initialize^0,c
+  1705   001644  504D               	movf	led_initialize@pin_obj^0,w,c
+  1706   001646  184B               	xorwf	??_led_initialize^0,w,c
+  1707   001648  0BF8               	andlw	-8
+  1708   00164A  184B               	xorwf	??_led_initialize^0,w,c
+  1709   00164C  6E4D               	movwf	led_initialize@pin_obj^0,c
+  1710   00164E  504A               	movf	led_initialize@led^0,w,c
+  1711   001650  6ED9               	movwf	fsr2l,c
+  1712   001652  6ADA               	clrf	fsr2h,c
+  1713   001654  38DF               	swapf	223,w,c
+  1714   001656  0B07               	andlw	7
+  1715   001658  6E4B               	movwf	??_led_initialize^0,c
+  1716   00165A  464B               	rlncf	??_led_initialize^0,f,c
+  1717   00165C  464B               	rlncf	??_led_initialize^0,f,c
+  1718   00165E  464B               	rlncf	??_led_initialize^0,f,c
+  1719   001660  504D               	movf	led_initialize@pin_obj^0,w,c
+  1720   001662  184B               	xorwf	??_led_initialize^0,w,c
+  1721   001664  0BC7               	andlw	-57
+  1722   001666  184B               	xorwf	??_led_initialize^0,w,c
+  1723   001668  6E4D               	movwf	led_initialize@pin_obj^0,c
+  1724   00166A  9C4D               	bcf	led_initialize@pin_obj^0,6,c
+  1725   00166C  504A               	movf	led_initialize@led^0,w,c
+  1726   00166E  6ED9               	movwf	fsr2l,c
+  1727   001670  6ADA               	clrf	fsr2h,c
+  1728   001672  AEDF               	btfss	indf2,7,c
+  1729   001674  D002               	bra	u785
+  1730   001676  8E4D               	bsf	led_initialize@pin_obj^0,7,c
+  1731   001678  D001               	bra	u787
+  1732   00167A                     u785:
+  1733   00167A  9E4D               	bcf	led_initialize@pin_obj^0,7,c
+  1734   00167C                     u787:
+  1735   00167C                     
+  1736                           ;ECU_Layer/LED/ecu_led.c: 26:         gpio_pin_initialization(&pin_obj);
+  1737   00167C  0E4D               	movlw	low led_initialize@pin_obj
+  1738   00167E  6E48               	movwf	gpio_pin_initialization@pin_config^0,c
+  1739   001680  EC18  F00C         	call	_gpio_pin_initialization	;wreg free
+  1740   001684                     l1385:
+  1741                           
+  1742                           ;ECU_Layer/LED/ecu_led.c: 28:     return ret;
+  1743   001684  504C               	movf	led_initialize@ret^0,w,c
+  1744   001686  0012               	return		;funcret
+  1745   001688                     __end_of_led_initialize:
+  1746                           	callstack 0
+  1747                           
+  1748 ;; *************** function _gpio_pin_initialization *****************
+  1749 ;; Defined at:
+  1750 ;;		line 140 in file "MCAL_Layer/GPIO/hal_gpio.c"
+  1751 ;; Parameters:    Size  Location     Type
+  1752 ;;  pin_config      1    8[COMRAM] PTR const struct .
+  1753 ;;		 -> relay_initialize@pin_obj(1), led_initialize@pin_obj(1), 
+  1754 ;; Auto vars:     Size  Location     Type
+  1755 ;;  ret             1    0        unsigned char 
+  1756 ;; Return value:  Size  Location     Type
+  1757 ;;                  1    wreg      unsigned char 
+  1758 ;; Registers used:
+  1759 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  1760 ;; Tracked objects:
+  1761 ;;		On entry : 0/0
+  1762 ;;		On exit  : 0/0
+  1763 ;;		Unchanged: 0/0
+  1764 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1765 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1766 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1767 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1768 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1769 ;;Total ram usage:        2 bytes
+  1770 ;; Hardware stack levels used: 1
+  1771 ;; Hardware stack levels required when called: 1
+  1772 ;; This function calls:
+  1773 ;;		_gpio_pin_direction_initialization
+  1774 ;;		_gpio_pin_write_logic
+  1775 ;; This function is called by:
+  1776 ;;		_led_initialize
+  1777 ;;		_relay_initialize
+  1778 ;; This function uses a non-reentrant model
+  1779 ;;
+  1780                           
+  1781                           	psect	text10
+  1782   001830                     __ptext10:
+  1783                           	callstack 0
+  1784   001830                     _gpio_pin_initialization:
+  1785                           	callstack 27
+  1786   001830                     
+  1787                           ;MCAL_Layer/GPIO/hal_gpio.c: 142:     if ((((void*)0) == pin_config) || (pin_config->pin
+      +                           > 8 - 1)) {
+  1788   001830  5048               	movf	gpio_pin_initialization@pin_config^0,w,c
+  1789   001832  B4D8               	btfsc	status,2,c
+  1790   001834  EF1E  F00C         	goto	u701
+  1791   001838  EF20  F00C         	goto	u700
+  1792   00183C                     u701:
+  1793   00183C  EF30  F00C         	goto	l1345
+  1794   001840                     u700:
+  1795   001840  5048               	movf	gpio_pin_initialization@pin_config^0,w,c
+  1796   001842  6ED9               	movwf	fsr2l,c
+  1797   001844  6ADA               	clrf	fsr2h,c
+  1798   001846  30DF               	rrcf	223,w,c
+  1799   001848  32E8               	rrcf	wreg,f,c
+  1800   00184A  32E8               	rrcf	wreg,f,c
+  1801   00184C  0B07               	andlw	7
+  1802   00184E  6E49               	movwf	??_gpio_pin_initialization^0,c
+  1803   001850  0E07               	movlw	7
+  1804   001852  6449               	cpfsgt	??_gpio_pin_initialization^0,c
+  1805   001854  EF2E  F00C         	goto	u711
+  1806   001858  EF30  F00C         	goto	u710
+  1807   00185C                     u711:
+  1808   00185C  EF32  F00C         	goto	l1347
+  1809   001860                     u710:
+  1810   001860                     l1345:
+  1811                           
+  1812                           ;MCAL_Layer/GPIO/hal_gpio.c: 144:     } else {
+  1813   001860  EF41  F00C         	goto	l145
+  1814   001864                     l1347:
+  1815                           
+  1816                           ;MCAL_Layer/GPIO/hal_gpio.c: 145:         gpio_pin_direction_initialization(pin_config);
+  1817   001864  C048  F040         	movff	gpio_pin_initialization@pin_config,gpio_pin_direction_initialization@pin_config
+  1818   001868  ECE5  F008         	call	_gpio_pin_direction_initialization	;wreg free
+  1819                           
+  1820                           ;MCAL_Layer/GPIO/hal_gpio.c: 146:         gpio_pin_write_logic(pin_config, pin_config->l
+      +                          ogic);
+  1821   00186C  C048  F040         	movff	gpio_pin_initialization@pin_config,gpio_pin_write_logic@pin_config
+  1822   001870  5048               	movf	gpio_pin_initialization@pin_config^0,w,c
+  1823   001872  6ED9               	movwf	fsr2l,c
+  1824   001874  6ADA               	clrf	fsr2h,c
+  1825   001876  0E00               	movlw	0
+  1826   001878  BEDF               	btfsc	indf2,7,c
+  1827   00187A  0E01               	movlw	1
+  1828   00187C  6E41               	movwf	gpio_pin_write_logic@logic^0,c
+  1829   00187E  EC6E  F009         	call	_gpio_pin_write_logic	;wreg free
+  1830   001882                     l145:
+  1831   001882  0012               	return		;funcret
+  1832   001884                     __end_of_gpio_pin_initialization:
+  1833                           	callstack 0
+  1834                           
+  1835 ;; *************** function _gpio_pin_write_logic *****************
+  1836 ;; Defined at:
+  1837 ;;		line 73 in file "MCAL_Layer/GPIO/hal_gpio.c"
+  1838 ;; Parameters:    Size  Location     Type
+  1839 ;;  pin_config      1    0[COMRAM] PTR const struct .
+  1840 ;;		 -> relay_turn_off@pin_obj(1), relay_turn_on@pin_obj(1), relay_initialize@pin_obj(1), led_turn_off@pin_obj(1), 
+  1841 ;;		 -> led_turn_on@pin_obj(1), led_initialize@pin_obj(1), 
+  1842 ;;  logic           1    1[COMRAM] enum E3063
+  1843 ;; Auto vars:     Size  Location     Type
+  1844 ;;  ret             1    7[COMRAM] unsigned char 
+  1845 ;; Return value:  Size  Location     Type
+  1846 ;;                  1    wreg      unsigned char 
+  1847 ;; Registers used:
+  1848 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+  1849 ;; Tracked objects:
+  1850 ;;		On entry : 0/0
+  1851 ;;		On exit  : 0/0
+  1852 ;;		Unchanged: 0/0
+  1853 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1854 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1855 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1856 ;;      Temps:          5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1857 ;;      Totals:         8       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1858 ;;Total ram usage:        8 bytes
+  1859 ;; Hardware stack levels used: 1
+  1860 ;; This function calls:
+  1861 ;;		Nothing
+  1862 ;; This function is called by:
+  1863 ;;		_led_turn_on
+  1864 ;;		_led_turn_off
+  1865 ;;		_gpio_pin_initialization
+  1866 ;;		_relay_turn_on
+  1867 ;;		_relay_turn_off
+  1868 ;; This function uses a non-reentrant model
+  1869 ;;
+  1870                           
+  1871                           	psect	text11
+  1872   0012DC                     __ptext11:
+  1873                           	callstack 0
+  1874   0012DC                     _gpio_pin_write_logic:
+  1875                           	callstack 29
+  1876   0012DC                     
+  1877                           ;MCAL_Layer/GPIO/hal_gpio.c: 74:     STD_ReturnType ret = (STD_ReturnType)0x01;
+  1878   0012DC  0E01               	movlw	1
+  1879   0012DE  6E47               	movwf	gpio_pin_write_logic@ret^0,c
+  1880                           
+  1881                           ;MCAL_Layer/GPIO/hal_gpio.c: 75:     if ((((void*)0) == pin_config) || (pin_config->pin 
+      +                          > 8 - 1)) {
+  1882   0012E0  5040               	movf	gpio_pin_write_logic@pin_config^0,w,c
+  1883   0012E2  B4D8               	btfsc	status,2,c
+  1884   0012E4  EF76  F009         	goto	u661
+  1885   0012E8  EF78  F009         	goto	u660
+  1886   0012EC                     u661:
+  1887   0012EC  EF88  F009         	goto	l1323
+  1888   0012F0                     u660:
+  1889   0012F0  5040               	movf	gpio_pin_write_logic@pin_config^0,w,c
+  1890   0012F2  6ED9               	movwf	fsr2l,c
+  1891   0012F4  6ADA               	clrf	fsr2h,c
+  1892   0012F6  30DF               	rrcf	223,w,c
+  1893   0012F8  32E8               	rrcf	wreg,f,c
+  1894   0012FA  32E8               	rrcf	wreg,f,c
+  1895   0012FC  0B07               	andlw	7
+  1896   0012FE  6E42               	movwf	??_gpio_pin_write_logic^0,c
+  1897   001300  0E07               	movlw	7
+  1898   001302  6442               	cpfsgt	??_gpio_pin_write_logic^0,c
+  1899   001304  EF86  F009         	goto	u671
+  1900   001308  EF88  F009         	goto	u670
+  1901   00130C                     u671:
+  1902   00130C  EFDF  F009         	goto	l1331
+  1903   001310                     u670:
+  1904   001310                     l1323:
+  1905                           
+  1906                           ;MCAL_Layer/GPIO/hal_gpio.c: 76:         ret = (STD_ReturnType)0x00;
+  1907   001310  0E00               	movlw	0
+  1908   001312  6E47               	movwf	gpio_pin_write_logic@ret^0,c
+  1909                           
+  1910                           ;MCAL_Layer/GPIO/hal_gpio.c: 77:     } else {
+  1911   001314  EFF4  F009         	goto	l1333
+  1912   001318                     l1325:
+  1913                           
+  1914                           ;MCAL_Layer/GPIO/hal_gpio.c: 80:                 (*lat_registers[pin_config->port] &= ~(
+      +                          1 << pin_config->pin));
+  1915   001318  5040               	movf	gpio_pin_write_logic@pin_config^0,w,c
+  1916   00131A  6ED9               	movwf	fsr2l,c
+  1917   00131C  6ADA               	clrf	fsr2h,c
+  1918   00131E  30DF               	rrcf	223,w,c
+  1919   001320  32E8               	rrcf	wreg,f,c
+  1920   001322  32E8               	rrcf	wreg,f,c
+  1921   001324  0B07               	andlw	7
+  1922   001326  6E42               	movwf	??_gpio_pin_write_logic^0,c
+  1923   001328  0E01               	movlw	1
+  1924   00132A  6E43               	movwf	(??_gpio_pin_write_logic+1)^0,c
+  1925   00132C  2A42               	incf	??_gpio_pin_write_logic^0,f,c
+  1926   00132E  EF9B  F009         	goto	u684
+  1927   001332                     u685:
+  1928   001332  90D8               	bcf	status,0,c
+  1929   001334  3643               	rlcf	(??_gpio_pin_write_logic+1)^0,f,c
+  1930   001336                     u684:
+  1931   001336  2E42               	decfsz	??_gpio_pin_write_logic^0,f,c
+  1932   001338  EF99  F009         	goto	u685
+  1933   00133C  5043               	movf	(??_gpio_pin_write_logic+1)^0,w,c
+  1934   00133E  0AFF               	xorlw	255
+  1935   001340  6E44               	movwf	(??_gpio_pin_write_logic+2)^0,c
+  1936   001342  5040               	movf	gpio_pin_write_logic@pin_config^0,w,c
+  1937   001344  6ED9               	movwf	fsr2l,c
+  1938   001346  6ADA               	clrf	fsr2h,c
+  1939   001348  50DF               	movf	223,w,c
+  1940   00134A  0B07               	andlw	7
+  1941   00134C  0D02               	mullw	2
+  1942   00134E  50F3               	movf	243,w,c
+  1943   001350  0F0B               	addlw	low _lat_registers
+  1944   001352  6ED9               	movwf	fsr2l,c
+  1945   001354  6ADA               	clrf	fsr2h,c
+  1946   001356  CFDE F045          	movff	postinc2,??_gpio_pin_write_logic+3
+  1947   00135A  CFDD F046          	movff	postdec2,??_gpio_pin_write_logic+4
+  1948   00135E  C045  FFD9         	movff	??_gpio_pin_write_logic+3,fsr2l
+  1949   001362  C046  FFDA         	movff	??_gpio_pin_write_logic+4,fsr2h
+  1950   001366  5044               	movf	(??_gpio_pin_write_logic+2)^0,w,c
+  1951   001368  16DF               	andwf	indf2,f,c
+  1952                           
+  1953                           ;MCAL_Layer/GPIO/hal_gpio.c: 81:                 break;
+  1954   00136A  EFF4  F009         	goto	l1333
+  1955   00136E                     l1327:
+  1956                           
+  1957                           ;MCAL_Layer/GPIO/hal_gpio.c: 83:                 (*lat_registers[pin_config->port] |= (1
+      +                           << pin_config->pin));
+  1958   00136E  5040               	movf	gpio_pin_write_logic@pin_config^0,w,c
+  1959   001370  6ED9               	movwf	fsr2l,c
+  1960   001372  6ADA               	clrf	fsr2h,c
+  1961   001374  30DF               	rrcf	223,w,c
+  1962   001376  32E8               	rrcf	wreg,f,c
+  1963   001378  32E8               	rrcf	wreg,f,c
+  1964   00137A  0B07               	andlw	7
+  1965   00137C  6E42               	movwf	??_gpio_pin_write_logic^0,c
+  1966   00137E  0E01               	movlw	1
+  1967   001380  6E43               	movwf	(??_gpio_pin_write_logic+1)^0,c
+  1968   001382  2A42               	incf	??_gpio_pin_write_logic^0,f,c
+  1969   001384  EFC6  F009         	goto	u694
+  1970   001388                     u695:
+  1971   001388  90D8               	bcf	status,0,c
+  1972   00138A  3643               	rlcf	(??_gpio_pin_write_logic+1)^0,f,c
+  1973   00138C                     u694:
+  1974   00138C  2E42               	decfsz	??_gpio_pin_write_logic^0,f,c
+  1975   00138E  EFC4  F009         	goto	u695
+  1976   001392  5040               	movf	gpio_pin_write_logic@pin_config^0,w,c
+  1977   001394  6ED9               	movwf	fsr2l,c
+  1978   001396  6ADA               	clrf	fsr2h,c
+  1979   001398  50DF               	movf	223,w,c
+  1980   00139A  0B07               	andlw	7
+  1981   00139C  0D02               	mullw	2
+  1982   00139E  50F3               	movf	243,w,c
+  1983   0013A0  0F0B               	addlw	low _lat_registers
+  1984   0013A2  6ED9               	movwf	fsr2l,c
+  1985   0013A4  6ADA               	clrf	fsr2h,c
+  1986   0013A6  CFDE F044          	movff	postinc2,??_gpio_pin_write_logic+2
+  1987   0013AA  CFDD F045          	movff	postdec2,??_gpio_pin_write_logic+3
+  1988   0013AE  C044  FFD9         	movff	??_gpio_pin_write_logic+2,fsr2l
+  1989   0013B2  C045  FFDA         	movff	??_gpio_pin_write_logic+3,fsr2h
+  1990   0013B6  5043               	movf	(??_gpio_pin_write_logic+1)^0,w,c
+  1991   0013B8  12DF               	iorwf	indf2,f,c
+  1992                           
+  1993                           ;MCAL_Layer/GPIO/hal_gpio.c: 84:                 break;
+  1994   0013BA  EFF4  F009         	goto	l1333
+  1995   0013BE                     l1331:
+  1996   0013BE  5041               	movf	gpio_pin_write_logic@logic^0,w,c
+  1997   0013C0  6E42               	movwf	??_gpio_pin_write_logic^0,c
+  1998   0013C2  6A43               	clrf	(??_gpio_pin_write_logic+1)^0,c
+  1999                           
+  2000                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  2001                           ; Switch size 1, requested type "simple"
+  2002                           ; Number of cases is 1, Range of values is 0 to 0
+  2003                           ; switch strategies available:
+  2004                           ; Name         Instructions Cycles
+  2005                           ; simple_byte            4     3 (average)
+  2006                           ;	Chosen strategy is simple_byte
+  2007   0013C4  5043               	movf	(??_gpio_pin_write_logic+1)^0,w,c
+  2008   0013C6  0A00               	xorlw	0	; case 0
+  2009   0013C8  B4D8               	btfsc	status,2,c
+  2010   0013CA  EFE9  F009         	goto	l1551
+  2011   0013CE  EF88  F009         	goto	l1323
+  2012   0013D2                     l1551:
+  2013                           
+  2014                           ; Switch size 1, requested type "simple"
+  2015                           ; Number of cases is 2, Range of values is 0 to 1
+  2016                           ; switch strategies available:
+  2017                           ; Name         Instructions Cycles
+  2018                           ; simple_byte            7     4 (average)
+  2019                           ;	Chosen strategy is simple_byte
+  2020   0013D2  5042               	movf	??_gpio_pin_write_logic^0,w,c
+  2021   0013D4  0A00               	xorlw	0	; case 0
+  2022   0013D6  B4D8               	btfsc	status,2,c
+  2023   0013D8  EF8C  F009         	goto	l1325
+  2024   0013DC  0A01               	xorlw	1	; case 1
+  2025   0013DE  B4D8               	btfsc	status,2,c
+  2026   0013E0  EFB7  F009         	goto	l1327
+  2027   0013E4  EF88  F009         	goto	l1323
+  2028   0013E8                     l1333:
+  2029                           
+  2030                           ;MCAL_Layer/GPIO/hal_gpio.c: 89:     return ret;
+  2031   0013E8  5047               	movf	gpio_pin_write_logic@ret^0,w,c
+  2032   0013EA  0012               	return		;funcret
+  2033   0013EC                     __end_of_gpio_pin_write_logic:
+  2034                           	callstack 0
+  2035                           
+  2036 ;; *************** function _button_initialize *****************
+  2037 ;; Defined at:
+  2038 ;;		line 17 in file "ECU_Layer/button/ecu_button.c"
+  2039 ;; Parameters:    Size  Location     Type
+  2040 ;;  btn             1    7[COMRAM] PTR const struct .
+  2041 ;;		 -> btn_low(3), btn_high(3), 
+  2042 ;; Auto vars:     Size  Location     Type
+  2043 ;;  ret             1    8[COMRAM] unsigned char 
+  2044 ;; Return value:  Size  Location     Type
+  2045 ;;                  1    wreg      unsigned char 
+  2046 ;; Registers used:
+  2047 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+  2048 ;; Tracked objects:
+  2049 ;;		On entry : 0/0
+  2050 ;;		On exit  : 0/0
+  2051 ;;		Unchanged: 0/0
+  2052 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2053 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2054 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2055 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2056 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2057 ;;Total ram usage:        2 bytes
+  2058 ;; Hardware stack levels used: 1
+  2059 ;; Hardware stack levels required when called: 1
+  2060 ;; This function calls:
+  2061 ;;		_gpio_pin_direction_initialization
+  2062 ;; This function is called by:
+  2063 ;;		_application_initialize
+  2064 ;; This function uses a non-reentrant model
+  2065 ;;
+  2066                           
+  2067                           	psect	text12
+  2068   0018EC                     __ptext12:
+  2069                           	callstack 0
+  2070   0018EC                     _button_initialize:
+  2071                           	callstack 28
+  2072   0018EC                     
+  2073                           ;ECU_Layer/button/ecu_button.c: 19:     if (((void*)0) == btn) {
+  2074   0018EC  5047               	movf	button_initialize@btn^0,w,c
+  2075   0018EE  A4D8               	btfss	status,2,c
+  2076   0018F0  EF7C  F00C         	goto	u721
+  2077   0018F4  EF7E  F00C         	goto	u720
+  2078   0018F8                     u721:
+  2079   0018F8  EF82  F00C         	goto	l1355
+  2080   0018FC                     u720:
+  2081   0018FC                     
+  2082                           ;ECU_Layer/button/ecu_button.c: 20:         ret = (STD_ReturnType)0x00;
+  2083   0018FC  0E00               	movlw	0
+  2084   0018FE  6E48               	movwf	button_initialize@ret^0,c
+  2085                           
+  2086                           ;ECU_Layer/button/ecu_button.c: 21:     } else {
+  2087   001900  EF87  F00C         	goto	l1357
+  2088   001904                     l1355:
+  2089                           
+  2090                           ;ECU_Layer/button/ecu_button.c: 22:         ret = gpio_pin_direction_initialization(&(bt
+      +                          n->button_pin));
+  2091   001904  C047  F040         	movff	button_initialize@btn,gpio_pin_direction_initialization@pin_config
+  2092   001908  ECE5  F008         	call	_gpio_pin_direction_initialization	;wreg free
+  2093   00190C  6E48               	movwf	button_initialize@ret^0,c
+  2094   00190E                     l1357:
+  2095                           
+  2096                           ;ECU_Layer/button/ecu_button.c: 24:     return ret;
+  2097   00190E  5048               	movf	button_initialize@ret^0,w,c
+  2098   001910  0012               	return		;funcret
+  2099   001912                     __end_of_button_initialize:
+  2100                           	callstack 0
+  2101                           
+  2102 ;; *************** function _gpio_pin_direction_initialization *****************
+  2103 ;; Defined at:
+  2104 ;;		line 25 in file "MCAL_Layer/GPIO/hal_gpio.c"
+  2105 ;; Parameters:    Size  Location     Type
+  2106 ;;  pin_config      1    0[COMRAM] PTR const struct .
+  2107 ;;		 -> relay_initialize@pin_obj(1), btn_low(3), btn_high(3), led_initialize@pin_obj(1), 
+  2108 ;; Auto vars:     Size  Location     Type
+  2109 ;;  ret             1    6[COMRAM] unsigned char 
+  2110 ;; Return value:  Size  Location     Type
+  2111 ;;                  1    wreg      unsigned char 
+  2112 ;; Registers used:
+  2113 ;;		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+  2114 ;; Tracked objects:
+  2115 ;;		On entry : 0/0
+  2116 ;;		On exit  : 0/0
+  2117 ;;		Unchanged: 0/0
+  2118 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2119 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2120 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2121 ;;      Temps:          5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2122 ;;      Totals:         7       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2123 ;;Total ram usage:        7 bytes
+  2124 ;; Hardware stack levels used: 1
+  2125 ;; This function calls:
+  2126 ;;		Nothing
+  2127 ;; This function is called by:
+  2128 ;;		_button_initialize
+  2129 ;;		_gpio_pin_initialization
+  2130 ;; This function uses a non-reentrant model
+  2131 ;;
+  2132                           
+  2133                           	psect	text13
+  2134   0011CA                     __ptext13:
+  2135                           	callstack 0
+  2136   0011CA                     _gpio_pin_direction_initialization:
+  2137                           	callstack 27
+  2138   0011CA                     
+  2139                           ;MCAL_Layer/GPIO/hal_gpio.c: 26:     STD_ReturnType ret = (STD_ReturnType)0x01;
+  2140   0011CA  0E01               	movlw	1
+  2141   0011CC  6E46               	movwf	gpio_pin_direction_initialization@ret^0,c
+  2142                           
+  2143                           ;MCAL_Layer/GPIO/hal_gpio.c: 27:     if ((((void*)0) == pin_config) || (pin_config->pin 
+      +                          > 8 - 1)) {
+  2144   0011CE  5040               	movf	gpio_pin_direction_initialization@pin_config^0,w,c
+  2145   0011D0  B4D8               	btfsc	status,2,c
+  2146   0011D2  EFED  F008         	goto	u611
+  2147   0011D6  EFEF  F008         	goto	u610
+  2148   0011DA                     u611:
+  2149   0011DA  EFFF  F008         	goto	l1305
+  2150   0011DE                     u610:
+  2151   0011DE  5040               	movf	gpio_pin_direction_initialization@pin_config^0,w,c
+  2152   0011E0  6ED9               	movwf	fsr2l,c
+  2153   0011E2  6ADA               	clrf	fsr2h,c
+  2154   0011E4  30DF               	rrcf	223,w,c
+  2155   0011E6  32E8               	rrcf	wreg,f,c
+  2156   0011E8  32E8               	rrcf	wreg,f,c
+  2157   0011EA  0B07               	andlw	7
+  2158   0011EC  6E41               	movwf	??_gpio_pin_direction_initialization^0,c
+  2159   0011EE  0E07               	movlw	7
+  2160   0011F0  6441               	cpfsgt	??_gpio_pin_direction_initialization^0,c
+  2161   0011F2  EFFD  F008         	goto	u621
+  2162   0011F6  EFFF  F008         	goto	u620
+  2163   0011FA                     u621:
+  2164   0011FA  EF56  F009         	goto	l1313
+  2165   0011FE                     u620:
+  2166   0011FE                     l1305:
+  2167                           
+  2168                           ;MCAL_Layer/GPIO/hal_gpio.c: 28:         ret = (STD_ReturnType)0x00;
+  2169   0011FE  0E00               	movlw	0
+  2170   001200  6E46               	movwf	gpio_pin_direction_initialization@ret^0,c
+  2171                           
+  2172                           ;MCAL_Layer/GPIO/hal_gpio.c: 29:     } else {
+  2173   001202  EF6C  F009         	goto	l1315
+  2174   001206                     l1307:
+  2175                           
+  2176                           ;MCAL_Layer/GPIO/hal_gpio.c: 32:                 (*tris_registers[pin_config->port] &= ~
+      +                          (1 << pin_config->pin));
+  2177   001206  5040               	movf	gpio_pin_direction_initialization@pin_config^0,w,c
+  2178   001208  6ED9               	movwf	fsr2l,c
+  2179   00120A  6ADA               	clrf	fsr2h,c
+  2180   00120C  30DF               	rrcf	223,w,c
+  2181   00120E  32E8               	rrcf	wreg,f,c
+  2182   001210  32E8               	rrcf	wreg,f,c
+  2183   001212  0B07               	andlw	7
+  2184   001214  6E41               	movwf	??_gpio_pin_direction_initialization^0,c
+  2185   001216  0E01               	movlw	1
+  2186   001218  6E42               	movwf	(??_gpio_pin_direction_initialization+1)^0,c
+  2187   00121A  2A41               	incf	??_gpio_pin_direction_initialization^0,f,c
+  2188   00121C  EF12  F009         	goto	u634
+  2189   001220                     u635:
+  2190   001220  90D8               	bcf	status,0,c
+  2191   001222  3642               	rlcf	(??_gpio_pin_direction_initialization+1)^0,f,c
+  2192   001224                     u634:
+  2193   001224  2E41               	decfsz	??_gpio_pin_direction_initialization^0,f,c
+  2194   001226  EF10  F009         	goto	u635
+  2195   00122A  5042               	movf	(??_gpio_pin_direction_initialization+1)^0,w,c
+  2196   00122C  0AFF               	xorlw	255
+  2197   00122E  6E43               	movwf	(??_gpio_pin_direction_initialization+2)^0,c
+  2198   001230  5040               	movf	gpio_pin_direction_initialization@pin_config^0,w,c
+  2199   001232  6ED9               	movwf	fsr2l,c
+  2200   001234  6ADA               	clrf	fsr2h,c
+  2201   001236  50DF               	movf	223,w,c
+  2202   001238  0B07               	andlw	7
+  2203   00123A  0D02               	mullw	2
+  2204   00123C  50F3               	movf	243,w,c
+  2205   00123E  0F15               	addlw	low _tris_registers
+  2206   001240  6ED9               	movwf	fsr2l,c
+  2207   001242  6ADA               	clrf	fsr2h,c
+  2208   001244  CFDE F044          	movff	postinc2,??_gpio_pin_direction_initialization+3
+  2209   001248  CFDD F045          	movff	postdec2,??_gpio_pin_direction_initialization+4
+  2210   00124C  C044  FFD9         	movff	??_gpio_pin_direction_initialization+3,fsr2l
+  2211   001250  C045  FFDA         	movff	??_gpio_pin_direction_initialization+4,fsr2h
+  2212   001254  5043               	movf	(??_gpio_pin_direction_initialization+2)^0,w,c
+  2213   001256  16DF               	andwf	indf2,f,c
+  2214                           
+  2215                           ;MCAL_Layer/GPIO/hal_gpio.c: 33:                 break;
+  2216   001258  EF6C  F009         	goto	l1315
+  2217   00125C                     l1309:
+  2218                           
+  2219                           ;MCAL_Layer/GPIO/hal_gpio.c: 35:                 (*tris_registers[pin_config->port] |= (
+      +                          1 << pin_config->pin));
+  2220   00125C  5040               	movf	gpio_pin_direction_initialization@pin_config^0,w,c
+  2221   00125E  6ED9               	movwf	fsr2l,c
+  2222   001260  6ADA               	clrf	fsr2h,c
+  2223   001262  30DF               	rrcf	223,w,c
+  2224   001264  32E8               	rrcf	wreg,f,c
+  2225   001266  32E8               	rrcf	wreg,f,c
+  2226   001268  0B07               	andlw	7
+  2227   00126A  6E41               	movwf	??_gpio_pin_direction_initialization^0,c
+  2228   00126C  0E01               	movlw	1
+  2229   00126E  6E42               	movwf	(??_gpio_pin_direction_initialization+1)^0,c
+  2230   001270  2A41               	incf	??_gpio_pin_direction_initialization^0,f,c
+  2231   001272  EF3D  F009         	goto	u644
+  2232   001276                     u645:
+  2233   001276  90D8               	bcf	status,0,c
+  2234   001278  3642               	rlcf	(??_gpio_pin_direction_initialization+1)^0,f,c
+  2235   00127A                     u644:
+  2236   00127A  2E41               	decfsz	??_gpio_pin_direction_initialization^0,f,c
+  2237   00127C  EF3B  F009         	goto	u645
+  2238   001280  5040               	movf	gpio_pin_direction_initialization@pin_config^0,w,c
+  2239   001282  6ED9               	movwf	fsr2l,c
+  2240   001284  6ADA               	clrf	fsr2h,c
+  2241   001286  50DF               	movf	223,w,c
+  2242   001288  0B07               	andlw	7
+  2243   00128A  0D02               	mullw	2
+  2244   00128C  50F3               	movf	243,w,c
+  2245   00128E  0F15               	addlw	low _tris_registers
+  2246   001290  6ED9               	movwf	fsr2l,c
+  2247   001292  6ADA               	clrf	fsr2h,c
+  2248   001294  CFDE F043          	movff	postinc2,??_gpio_pin_direction_initialization+2
+  2249   001298  CFDD F044          	movff	postdec2,??_gpio_pin_direction_initialization+3
+  2250   00129C  C043  FFD9         	movff	??_gpio_pin_direction_initialization+2,fsr2l
+  2251   0012A0  C044  FFDA         	movff	??_gpio_pin_direction_initialization+3,fsr2h
+  2252   0012A4  5042               	movf	(??_gpio_pin_direction_initialization+1)^0,w,c
+  2253   0012A6  12DF               	iorwf	indf2,f,c
+  2254                           
+  2255                           ;MCAL_Layer/GPIO/hal_gpio.c: 36:                 break;
+  2256   0012A8  EF6C  F009         	goto	l1315
+  2257   0012AC                     l1313:
+  2258   0012AC  5040               	movf	gpio_pin_direction_initialization@pin_config^0,w,c
+  2259   0012AE  6ED9               	movwf	fsr2l,c
+  2260   0012B0  6ADA               	clrf	fsr2h,c
+  2261   0012B2  BCDF               	btfsc	indf2,6,c
+  2262   0012B4  EF5E  F009         	goto	u651
+  2263   0012B8  EF61  F009         	goto	u650
+  2264   0012BC                     u651:
+  2265   0012BC  0E01               	movlw	1
+  2266   0012BE  EF62  F009         	goto	u656
+  2267   0012C2                     u650:
+  2268   0012C2  0E00               	movlw	0
+  2269   0012C4                     u656:
+  2270                           
+  2271                           ; Switch size 1, requested type "simple"
+  2272                           ; Number of cases is 2, Range of values is 0 to 1
+  2273                           ; switch strategies available:
+  2274                           ; Name         Instructions Cycles
+  2275                           ; simple_byte            7     4 (average)
+  2276                           ;	Chosen strategy is simple_byte
+  2277   0012C4  0A00               	xorlw	0	; case 0
+  2278   0012C6  B4D8               	btfsc	status,2,c
+  2279   0012C8  EF03  F009         	goto	l1307
+  2280   0012CC  0A01               	xorlw	1	; case 1
+  2281   0012CE  B4D8               	btfsc	status,2,c
+  2282   0012D0  EF2E  F009         	goto	l1309
+  2283   0012D4  EFFF  F008         	goto	l1305
+  2284   0012D8                     l1315:
+  2285                           
+  2286                           ;MCAL_Layer/GPIO/hal_gpio.c: 40:     return ret;
+  2287   0012D8  5046               	movf	gpio_pin_direction_initialization@ret^0,w,c
+  2288   0012DA  0012               	return		;funcret
+  2289   0012DC                     __end_of_gpio_pin_direction_initialization:
+  2290                           	callstack 0
+  2291                           
+  2292                           	psect	smallconst
+  2293   001000                     __psmallconst:
+  2294                           	callstack 0
+  2295   001000  00                 	db	0
+  2296   001001  00                 	db	0	; dummy byte at the end
+  2297   000000                     
+  2298                           	psect	rparam
+  2299   000000                     
+  2300                           	psect	config
+  2301                           
+  2302                           ; Padding undefined space
+  2303   300000                     	org	3145728
+  2304   300000  FF                 	db	255
+  2305                           
+  2306                           ;Config register CONFIG1H @ 0x300001
+  2307                           ;	Oscillator Selection bits
+  2308                           ;	FOSC = HS, HS oscillator
+  2309                           ;	Fail-Safe Clock Monitor Enable bit
+  2310                           ;	FCMEN = OFF, Fail-Safe Clock Monitor disabled
+  2311                           ;	Internal/External Oscillator Switchover bit
+  2312                           ;	IESO = OFF, Oscillator Switchover mode disabled
+  2313   300001                     	org	3145729
+  2314   300001  02                 	db	2
+  2315                           
+  2316                           ;Config register CONFIG2L @ 0x300002
+  2317                           ;	Power-up Timer Enable bit
+  2318                           ;	PWRTEN = OFF, PWRT disabled
+  2319                           ;	Brown-out Reset Enable bits
+  2320                           ;	BOREN = SBORDIS, Brown-out Reset enabled in hardware only (SBOREN is disabled)
+  2321                           ;	Brown Out Reset Voltage bits
+  2322                           ;	BORV = 18, VBOR set to 1.8 V nominal
+  2323   300002                     	org	3145730
+  2324   300002  1F                 	db	31
+  2325                           
+  2326                           ;Config register CONFIG2H @ 0x300003
+  2327                           ;	Watchdog Timer Enable bit
+  2328                           ;	WDTEN = OFF, WDT is controlled by SWDTEN bit of the WDTCON register
+  2329                           ;	Watchdog Timer Postscale Select bits
+  2330                           ;	WDTPS = 32768, 1:32768
+  2331   300003                     	org	3145731
+  2332   300003  1E                 	db	30
+  2333                           
+  2334                           ; Padding undefined space
+  2335   300004                     	org	3145732
+  2336   300004  FF                 	db	255
+  2337                           
+  2338                           ;Config register CONFIG3H @ 0x300005
+  2339                           ;	CCP2 MUX bit
+  2340                           ;	CCP2MX = PORTC, CCP2 input/output is multiplexed with RC1
+  2341                           ;	PORTB A/D Enable bit
+  2342                           ;	PBADEN = OFF, PORTB<4:0> pins are configured as digital I/O on Reset
+  2343                           ;	Low-Power Timer1 Oscillator Enable bit
+  2344                           ;	LPT1OSC = OFF, Timer1 configured for higher power operation
+  2345                           ;	HFINTOSC Fast Start-up
+  2346                           ;	HFOFST = OFF, The system clock is held off until the HFINTOSC is stable.
+  2347                           ;	MCLR Pin Enable bit
+  2348                           ;	MCLRE = ON, MCLR pin enabled; RE3 input pin disabled
+  2349   300005                     	org	3145733
+  2350   300005  81                 	db	129
+  2351                           
+  2352                           ;Config register CONFIG4L @ 0x300006
+  2353                           ;	Stack Full/Underflow Reset Enable bit
+  2354                           ;	STVREN = ON, Stack full/underflow will cause Reset
+  2355                           ;	Single-Supply ICSP Enable bit
+  2356                           ;	LVP = OFF, Single-Supply ICSP disabled
+  2357                           ;	Extended Instruction Set Enable bit
+  2358                           ;	XINST = OFF, Instruction set extension and Indexed Addressing mode disabled (Legacy mo
+      +                          de)
+  2359                           ;	Background Debugger Enable bit
+  2360                           ;	DEBUG = 0x1, unprogrammed default
+  2361   300006                     	org	3145734
+  2362   300006  81                 	db	129
+  2363                           
+  2364                           ; Padding undefined space
+  2365   300007                     	org	3145735
+  2366   300007  FF                 	db	255
+  2367                           
+  2368                           ;Config register CONFIG5L @ 0x300008
+  2369                           ;	Code Protection Block 0
+  2370                           ;	CP0 = OFF, Block 0 (000800-003FFFh) not code-protected
+  2371                           ;	Code Protection Block 1
+  2372                           ;	CP1 = OFF, Block 1 (004000-007FFFh) not code-protected
+  2373                           ;	Code Protection Block 2
+  2374                           ;	CP2 = OFF, Block 2 (008000-00BFFFh) not code-protected
+  2375                           ;	Code Protection Block 3
+  2376                           ;	CP3 = OFF, Block 3 (00C000-00FFFFh) not code-protected
+  2377   300008                     	org	3145736
+  2378   300008  0F                 	db	15
+  2379                           
+  2380                           ;Config register CONFIG5H @ 0x300009
+  2381                           ;	Boot Block Code Protection bit
+  2382                           ;	CPB = OFF, Boot block (000000-0007FFh) not code-protected
+  2383                           ;	Data EEPROM Code Protection bit
+  2384                           ;	CPD = OFF, Data EEPROM not code-protected
+  2385   300009                     	org	3145737
+  2386   300009  C0                 	db	192
+  2387                           
+  2388                           ;Config register CONFIG6L @ 0x30000A
+  2389                           ;	Write Protection Block 0
+  2390                           ;	WRT0 = OFF, Block 0 (000800-003FFFh) not write-protected
+  2391                           ;	Write Protection Block 1
+  2392                           ;	WRT1 = OFF, Block 1 (004000-007FFFh) not write-protected
+  2393                           ;	Write Protection Block 2
+  2394                           ;	WRT2 = OFF, Block 2 (008000-00BFFFh) not write-protected
+  2395                           ;	Write Protection Block 3
+  2396                           ;	WRT3 = OFF, Block 3 (00C000h-00FFFFh) not write-protected
+  2397   30000A                     	org	3145738
+  2398   30000A  0F                 	db	15
+  2399                           
+  2400                           ;Config register CONFIG6H @ 0x30000B
+  2401                           ;	Configuration Register Write Protection bit
+  2402                           ;	WRTC = OFF, Configuration registers (300000-3000FFh) not write-protected
+  2403                           ;	Boot Block Write Protection bit
+  2404                           ;	WRTB = OFF, Boot Block (000000-0007FFh) not write-protected
+  2405                           ;	Data EEPROM Write Protection bit
+  2406                           ;	WRTD = OFF, Data EEPROM not write-protected
+  2407   30000B                     	org	3145739
+  2408   30000B  E0                 	db	224
+  2409                           
+  2410                           ;Config register CONFIG7L @ 0x30000C
+  2411                           ;	Table Read Protection Block 0
+  2412                           ;	EBTR0 = OFF, Block 0 (000800-003FFFh) not protected from table reads executed in other
+      +                           blocks
+  2413                           ;	Table Read Protection Block 1
+  2414                           ;	EBTR1 = OFF, Block 1 (004000-007FFFh) not protected from table reads executed in other
+      +                           blocks
+  2415                           ;	Table Read Protection Block 2
+  2416                           ;	EBTR2 = OFF, Block 2 (008000-00BFFFh) not protected from table reads executed in other
+      +                           blocks
+  2417                           ;	Table Read Protection Block 3
+  2418                           ;	EBTR3 = OFF, Block 3 (00C000-00FFFFh) not protected from table reads executed in other
+      +                           blocks
+  2419   30000C                     	org	3145740
+  2420   30000C  0F                 	db	15
+  2421                           
+  2422                           ;Config register CONFIG7H @ 0x30000D
+  2423                           ;	Boot Block Table Read Protection bit
+  2424                           ;	EBTRB = OFF, Boot Block (000000-0007FFh) not protected from table reads executed in ot
+      +                          her blocks
+  2425   30000D                     	org	3145741
+  2426   30000D  40                 	db	64
+  2427                           tosu	equ	0xFFF
+  2428                           tosh	equ	0xFFE
+  2429                           tosl	equ	0xFFD
+  2430                           stkptr	equ	0xFFC
+  2431                           pclatu	equ	0xFFB
+  2432                           pclath	equ	0xFFA
+  2433                           pcl	equ	0xFF9
+  2434                           tblptru	equ	0xFF8
+  2435                           tblptrh	equ	0xFF7
+  2436                           tblptrl	equ	0xFF6
+  2437                           tablat	equ	0xFF5
+  2438                           prodh	equ	0xFF4
+  2439                           prodl	equ	0xFF3
+  2440                           indf0	equ	0xFEF
+  2441                           postinc0	equ	0xFEE
+  2442                           postdec0	equ	0xFED
+  2443                           preinc0	equ	0xFEC
+  2444                           plusw0	equ	0xFEB
+  2445                           fsr0h	equ	0xFEA
+  2446                           fsr0l	equ	0xFE9
+  2447                           wreg	equ	0xFE8
+  2448                           indf1	equ	0xFE7
+  2449                           postinc1	equ	0xFE6
+  2450                           postdec1	equ	0xFE5
+  2451                           preinc1	equ	0xFE4
+  2452                           plusw1	equ	0xFE3
+  2453                           fsr1h	equ	0xFE2
+  2454                           fsr1l	equ	0xFE1
+  2455                           bsr	equ	0xFE0
+  2456                           indf2	equ	0xFDF
+  2457                           postinc2	equ	0xFDE
+  2458                           postdec2	equ	0xFDD
+  2459                           preinc2	equ	0xFDC
+  2460                           plusw2	equ	0xFDB
+  2461                           fsr2h	equ	0xFDA
+  2462                           fsr2l	equ	0xFD9
+  2463                           status	equ	0xFD8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        49
+    BSS         14
+    Persistent  1
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     14      78
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15           96      0       0
+
+Pointer List with Targets:
+
+    button_initialize@btn	PTR const struct . size(1) Largest target is 3
+		 -> btn_high(COMRAM[3]), btn_low(COMRAM[3]), 
+
+    button_read_state@btn	PTR const struct . size(1) Largest target is 3
+		 -> btn_high(COMRAM[3]), btn_low(COMRAM[3]), 
+
+    button_read_state@btn_state	PTR enum E3123 size(1) Largest target is 1
+		 -> btn_status_high(COMRAM[1]), btn_status_low(COMRAM[1]), 
+
+    gpio_pin_direction_initialization@pin_config	PTR const struct . size(1) Largest target is 3
+		 -> btn_high(COMRAM[3]), btn_low(COMRAM[3]), led_initialize@pin_obj(COMRAM[1]), relay_initialize@pin_obj(COMRAM[1]), 
+
+    gpio_pin_initialization@pin_config	PTR const struct . size(1) Largest target is 1
+		 -> led_initialize@pin_obj(COMRAM[1]), relay_initialize@pin_obj(COMRAM[1]), 
+
+    gpio_pin_read_logic@logic_status	PTR enum E3063 size(1) Largest target is 1
+		 -> button_read_state@Pin_Logic_Status(COMRAM[1]), 
+
+    gpio_pin_read_logic@pin_config	PTR const struct . size(1) Largest target is 3
+		 -> btn_high(COMRAM[3]), btn_low(COMRAM[3]), 
+
+    gpio_pin_write_logic@pin_config	PTR const struct . size(1) Largest target is 1
+		 -> led_initialize@pin_obj(COMRAM[1]), led_turn_off@pin_obj(COMRAM[1]), led_turn_on@pin_obj(COMRAM[1]), relay_initialize@pin_obj(COMRAM[1]), 
+		 -> relay_turn_off@pin_obj(COMRAM[1]), relay_turn_on@pin_obj(COMRAM[1]), 
+
+    lat_registers	PTR volatile unsigned char [5] size(2) Largest target is 1
+		 -> LATA(BITBIGSFRlll[1]), LATB(BITBIGSFRlh[1]), LATC(BITBIGSFRlh[1]), LATD(BITBIGSFRlh[1]), 
+		 -> LATE(BITBIGSFRlh[1]), 
+
+    led_initialize@led	PTR const struct . size(1) Largest target is 1
+		 -> led_1(COMRAM[1]), led_2(COMRAM[1]), led_3(COMRAM[1]), led_4(COMRAM[1]), 
+		 -> led_5(COMRAM[1]), led_6(COMRAM[1]), led_7(COMRAM[1]), led_8(COMRAM[1]), 
+
+    led_turn_off@led	PTR const struct . size(1) Largest target is 1
+		 -> led_1(COMRAM[1]), led_2(COMRAM[1]), led_3(COMRAM[1]), led_4(COMRAM[1]), 
+		 -> led_5(COMRAM[1]), led_6(COMRAM[1]), led_7(COMRAM[1]), led_8(COMRAM[1]), 
+
+    led_turn_on@led	PTR const struct . size(1) Largest target is 1
+		 -> led_1(COMRAM[1]), led_2(COMRAM[1]), led_3(COMRAM[1]), led_4(COMRAM[1]), 
+		 -> led_5(COMRAM[1]), led_6(COMRAM[1]), led_7(COMRAM[1]), led_8(COMRAM[1]), 
+
+    port_registers	PTR volatile unsigned char [5] size(2) Largest target is 1
+		 -> PORTA(BITBIGSFRlll[1]), PORTB(BITBIGSFRllh[1]), PORTC(BITBIGSFRllh[1]), PORTD(BITBIGSFRllh[1]), 
+		 -> PORTE(BITBIGSFRllh[1]), 
+
+    relay_initialize@_relay	PTR const struct . size(1) Largest target is 1
+		 -> relay_1(COMRAM[1]), 
+
+    relay_turn_off@_relay	PTR const struct . size(1) Largest target is 1
+		 -> relay_1(COMRAM[1]), 
+
+    relay_turn_on@_relay	PTR const struct . size(1) Largest target is 1
+		 -> relay_1(COMRAM[1]), 
+
+    tris_registers	PTR volatile unsigned char [5] size(2) Largest target is 1
+		 -> TRISA(BITBIGSFRlll[1]), TRISB(BITBIGSFRh[1]), TRISC(BITBIGSFRh[1]), TRISD(BITBIGSFRh[1]), 
+		 -> TRISE(BITBIGSFRh[1]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _relay_turn_on->_gpio_pin_write_logic
+    _relay_turn_off->_gpio_pin_write_logic
+    _led_turn_on->_gpio_pin_write_logic
+    _led_turn_off->_gpio_pin_write_logic
+    _button_read_state->_gpio_pin_read_logic
+    _application_initialize->_led_initialize
+    _application_initialize->_relay_initialize
+    _relay_initialize->_gpio_pin_initialization
+    _led_initialize->_gpio_pin_initialization
+    _gpio_pin_initialization->_gpio_pin_write_logic
+    _button_initialize->_gpio_pin_direction_initialization
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0   11221
+             _application_initialize
+                  _button_read_state
+                       _led_turn_off
+                        _led_turn_on
+                     _relay_turn_off
+                      _relay_turn_on
+ ---------------------------------------------------------------------------------
+ (1) _relay_turn_on                                        4     3      1    1143
+                                              8 COMRAM     3     2      1
+               _gpio_pin_write_logic
+ ---------------------------------------------------------------------------------
+ (1) _relay_turn_off                                       4     3      1    1219
+                                              8 COMRAM     3     2      1
+               _gpio_pin_write_logic
+ ---------------------------------------------------------------------------------
+ (1) _led_turn_on                                          4     3      1    1676
+                                              8 COMRAM     3     2      1
+               _gpio_pin_write_logic
+ ---------------------------------------------------------------------------------
+ (1) _led_turn_off                                         4     3      1    1676
+                                              8 COMRAM     3     2      1
+               _gpio_pin_write_logic
+ ---------------------------------------------------------------------------------
+ (1) _button_read_state                                    5     3      2     887
+                                              6 COMRAM     5     3      2
+                _gpio_pin_read_logic
+ ---------------------------------------------------------------------------------
+ (2) _gpio_pin_read_logic                                  7     5      2     292
+                                              0 COMRAM     6     4      2
+ ---------------------------------------------------------------------------------
+ (1) _application_initialize                               0     0      0    4620
+                  _button_initialize
+                     _led_initialize
+                   _relay_initialize
+ ---------------------------------------------------------------------------------
+ (2) _relay_initialize                                     4     3      1    1768
+                                             10 COMRAM     4     3      1
+            _gpio_pin_initialization
+ ---------------------------------------------------------------------------------
+ (2) _led_initialize                                       4     3      1    2300
+                                             10 COMRAM     4     3      1
+            _gpio_pin_initialization
+ ---------------------------------------------------------------------------------
+ (3) _gpio_pin_initialization                              3     2      1    1540
+                                              8 COMRAM     2     1      1
+  _gpio_pin_direction_initialization
+               _gpio_pin_write_logic
+ ---------------------------------------------------------------------------------
+ (2) _gpio_pin_write_logic                                 8     6      2     939
+                                              0 COMRAM     8     6      2
+ ---------------------------------------------------------------------------------
+ (2) _button_initialize                                    2     1      1     552
+                                              7 COMRAM     2     1      1
+  _gpio_pin_direction_initialization
+ ---------------------------------------------------------------------------------
+ (4) _gpio_pin_direction_initialization                    7     6      1     331
+                                              0 COMRAM     7     6      1
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _application_initialize
+     _button_initialize
+       _gpio_pin_direction_initialization
+     _led_initialize
+       _gpio_pin_initialization
+         _gpio_pin_direction_initialization
+         _gpio_pin_write_logic
+     _relay_initialize
+       _gpio_pin_initialization
+   _button_read_state
+     _gpio_pin_read_logic
+   _led_turn_off
+     _gpio_pin_write_logic
+   _led_turn_on
+     _gpio_pin_write_logic
+   _relay_turn_off
+     _gpio_pin_write_logic
+   _relay_turn_on
+     _gpio_pin_write_logic
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F5F      0       0      41        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK14          100      0       0      32        0.0%
+BANK14             100      0       0      33        0.0%
+BITBANK13          100      0       0      30        0.0%
+BANK13             100      0       0      31        0.0%
+BITBANK12          100      0       0      28        0.0%
+BANK12             100      0       0      29        0.0%
+BITBANK11          100      0       0      26        0.0%
+BANK11             100      0       0      27        0.0%
+BITBANK10          100      0       0      24        0.0%
+BANK10             100      0       0      25        0.0%
+BITBANK9           100      0       0      22        0.0%
+BANK9              100      0       0      23        0.0%
+BITBANK8           100      0       0      20        0.0%
+BANK8              100      0       0      21        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBIGSFRh          69      0       0      36        0.0%
+BITBANK15           60      0       0      34        0.0%
+BANK15              60      0       0      35        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      E      4E       1       82.1%
+BITBIGSFRlll        20      0       0      39        0.0%
+BITBIGSFRllh         4      0       0      38        0.0%
+BITBIGSFRlh          4      0       0      37        0.0%
+BIGSFR               0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      4E      40        0.0%
+DATA                 0      0      4E       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.46 build 20240104201356 
+Symbol Table                                                                                   Wed Aug 21 00:38:06 2024
+
+                                          l9 1910                                           l23 149C  
+                                         l32 1634                                           l50 182E  
+                                         l43 17C4                                           l36 1686  
+                                         l46 17DA                                           l39 1770  
+                        relay_initialize@ret 004C                                _btn_low_valid 0032  
+                                        l105 12DA                                          l131 1536  
+                                        l124 13EA                                          l145 1882  
+                                        l270 169C                                          l263 15C4  
+                                        l256 15A6                                          l281 175A  
+                                        l274 16F0                                          l267 1616  
+                                        l277 1706                                          u610 11DE  
+                                        u611 11DA                                          u620 11FE  
+                                        u700 1840                                          u621 11FA  
+                                        u701 183C                                          u710 1860  
+                                        u711 185C                                          u720 18FC  
+                                        u721 18F8                                          u650 12C2  
+                                        u634 1224                                          u730 14AE  
+                                        u810 1404                                          u651 12BC  
+                                        u635 1220                                          u731 14AA  
+                                        u811 1400                                          u644 127A  
+                                        u660 12F0                                          u740 14BE  
+                                        u820 1414                                          u645 1276  
+                                        u661 12EC                                          u805 160A  
+                                        u741 14BA                                          u821 1410  
+                                        u670 1310                                          u750 14DE  
+                                        u830 1442                                          u910 1702  
+                                        u671 130C                                          u807 160C  
+                                        u751 14DA                                          u831 143E  
+                                        u911 16FE                                          u656 12C4  
+                                        u840 1452                                          u841 144E  
+                                        u905 1820                                          u770 162C  
+                                        u850 1486                                          u930 1698  
+                                        u771 1628                                          u851 1482  
+                                        u907 1822                                          u931 1694  
+                                        u684 1336                                          u764 152A  
+                                        u860 1496                                          u685 1332  
+                                        u765 1526                                          u861 1492  
+                                        u925 174C                                          u694 138C  
+                                        u790 15BC                                          u870 176C  
+                                        u950 103A                                          u695 1388  
+                                        u791 15B8                                          u871 1768  
+                                        u927 174E                                          u951 1036  
+                                        u960 1054                                          u785 167A  
+                                        u945 16E2                                          u961 1050  
+                                        u890 17D6                                          u970 107A  
+                                        u787 167C                                          u891 17D2  
+                                        u947 16E4                                          u971 1076  
+                                        u980 108E                                          u885 17B6  
+                                        u981 108A                                          u990 109E  
+                                        u887 17B8                                          u991 109A  
+                                        _ret 004E                          led_initialize@F3143 003D  
+                                        wreg 0FE8                        relay_initialize@F3137 0038  
+                               ?_led_turn_on 0048                                         l1301 11CA  
+                                       l1303 11DE                                         l1313 12AC  
+                                       l1305 11FE                                         l1321 12F0  
+                                       l1401 1614                                         l1307 1206  
+                                       l1315 12D8                                         l1331 13BE  
+                                       l1323 1310                                         l1411 141C  
+                                       l1309 125C                                         l1325 1318  
+                                       l1333 13E8                                         l1341 1830  
+                                       l1421 146C                                         l1413 1428  
+                                       l1405 13EC                                         l1501 103E  
+                                       l1351 18EC                                         l1327 136E  
+                                       l1319 12DC                                         l1343 1840  
+                                       l1423 1486                                         l1415 1442  
+                                       l1407 1404                                         l1511 107E  
+                                       l1503 1054                                         l1353 18FC  
+                                       l1345 1860                                         l1361 149E  
+                                       l1417 1452                                         l1409 1414  
+                                       l1441 17A8                                         l1433 175C  
+                                       l1521 10DE                                         l1513 108E  
+                                       l1505 105C                                         l1355 1904  
+                                       l1347 1864                                         l1363 14AE  
+                                       l1419 145E                                         l1451 17DE  
+                                       l1443 17B8                                         l1435 176C  
+                                       l1531 112E                                         l1523 10EE  
+                                       l1515 109E                                         l1507 1068  
+                                       l1357 190E                                         l1381 166C  
+                                       l1373 1618                                         l1461 1538  
+                                       l1365 14BE                                         l1429 149A  
+                                       l1453 1810                                         l1437 1774  
+                                       l1541 116E                                         l1533 1144  
+                                       l1525 1116                                         l1517 10C6  
+                                       l1509 107A                                         l1551 13D2  
+                                       l1383 167C                                         l1375 162C  
+                                       l1391 15BC                                         l1367 14DE  
+                                       l1455 1812                                         l1447 17C6  
+                                       l1439 17A6                                         l1471 173E  
+                                       l1463 16F2                                         l1543 117E  
+                                       l1535 114C                                         l1519 10CE  
+                                       l1527 111A                                         l1377 1638  
+                                       l1385 1684                                         l1393 15C8  
+                                       l1369 14E2                                         l1457 1822  
+                                       l1449 17D6                                         l1473 174E  
+                                       l1465 1702                                         l1481 16A0  
+                                       l1545 11A2                                         l1537 1158  
+                                       l1529 112A                                         l1379 166A  
+                                       l1395 15FA                                         l1467 170A  
+                                       l1483 16D2                                         l1539 116A  
+                                       l1491 1002                                         l1397 15FC  
+                                       l1389 15A8                                         l1469 173C  
+                                       l1485 16D4                                         l1477 1688  
+                                       l1493 100E                                         l1399 160C  
+                                       l1487 16E4                                         l1479 1698  
+                                       l1495 101C                                         l1497 102A  
+                                       l1499 103A                                         u1000 10DE  
+                                       u1001 10DA                                         u1010 10EE  
+                                       u1011 10EA                                         u1020 112A  
+                                       u1021 1126                                         u1030 1144  
+                                       u1031 1140                                         u1040 116A  
+                                       u1041 1166                                         u1050 117E  
+                                       u1051 117A                                         _LATA 0F89  
+                                       _LATB 0F8A                                         _LATC 0F8B  
+                                       _LATD 0F8C                                         _LATE 0F8D  
+                                       _flag 0039                                         _main 1002  
+                                       fsr1h 0FE2                                         fsr2h 0FDA  
+                                       indf1 0FE7                                         indf2 0FDF  
+                                       fsr1l 0FE1                                         fsr2l 0FD9  
+                     __end_of_led_initialize 1688                                         prodl 0FF3  
+                                       start 0000                                ?_led_turn_off 0048  
+                               ___param_bank 0000                         _gpio_pin_write_logic 12DC  
+                                      ?_main 0040                     ??_application_initialize 004E  
+            gpio_pin_read_logic@logic_status 0041                          relay_turn_off@F3147 0036  
+                                      _PORTA 0F80                                        _PORTB 0F81  
+                                      _PORTC 0F82                                        _PORTD 0F83  
+                                      _PORTE 0F84                                        _TRISA 0F92  
+                                      _TRISB 0F93                                        _TRISC 0F94  
+                                      _TRISD 0F95                                        _TRISE 0F96  
+                             _btn_status_low 003E                       relay_initialize@_relay 004A  
+                                      _led_1 0031                                        _led_2 0030  
+                                      _led_3 002F                                        _led_4 002E  
+                                      _led_5 002D                                        _led_6 002C  
+                                      _led_7 002B                                        _led_8 002A  
+                        relay_turn_on@_relay 0048                                        tablat 0FF5  
+                                      status 0FD8                              ?_led_initialize 004A  
+                             ??_led_turn_off 0049                              __initialization 1884  
+                      __end_of_relay_turn_on 16F2                                 __end_of_main 11CA  
+              gpio_pin_read_logic@pin_config 0040                        ?_gpio_pin_write_logic 0040  
+                              _lat_registers 000B                                       ??_main 004E  
+                              __activetblptr 0002                             led_turn_on@F3148 003C  
+                          _button_initialize 18EC                            _button_read_state 13EC  
+                         ?_button_initialize 0047                           ?_button_read_state 0046  
+                        ??_button_initialize 0048                              _btn_status_high 003F  
+                        ??_button_read_state 0048                                       clear_0 18AA  
+                      led_initialize@pin_obj 004D                               _relay_turn_off 16F2  
+                                     isa$std 0001                      relay_initialize@pin_obj 004D  
+                       relay_turn_off@_relay 0048                                 __pdataCOMRAM 0001  
+                  __end_of_button_initialize 1912                                 __mediumconst 0000  
+                  __end_of_button_read_state 149E                                       tblptrh 0FF7  
+                                     tblptrl 0FF6                                       tblptru 0FF8  
+                       relay_turn_on@pin_obj 004A                            ?_relay_initialize 004A  
+                         ??_relay_initialize 004B            button_read_state@Pin_Logic_Status 004A  
+                                 __accesstop 0060                      __end_of__initialization 18B0  
+                              ___rparam_used 0001                            led_initialize@led 004A  
+                          led_initialize@ret 004C                       ??_gpio_pin_write_logic 0042  
+                             __pcstackCOMRAM 0040                         button_initialize@btn 0047  
+                     __end_of_relay_turn_off 175C                         button_initialize@ret 0048  
+                       __end_of_led_turn_off 1830                       _application_initialize 1538  
+                                 __pnvCOMRAM 004E                         button_read_state@btn 0046  
+                       button_read_state@ret 0049                            led_turn_off@F3153 003B  
+                            ?_relay_turn_off 0048                         led_turn_toggle@F3158 003A  
+                           ??_led_initialize 004B                               _tris_registers 0015  
+                                    __Hparam 0000                                      __Lparam 0000  
+                        _gpio_pin_read_logic 149E                                 __psmallconst 1000  
+                      _btn_high_valid_status 0022                                      __pcinit 1884  
+                                    __ramtop 1000                                      __ptext0 1002  
+                                    __ptext1 1688                                      __ptext2 16F2  
+                                    __ptext3 175C                                      __ptext4 17C6  
+                                    __ptext5 13EC                                      __ptext6 149E  
+                                    __ptext7 1538                                      __ptext8 15A8  
+                                    __ptext9 1618                                      _btn_low 0023  
+                                    _relay_1 0029                         ?_gpio_pin_read_logic 0040  
+                       end_of_initialization 18B0                                __Lmediumconst 0000  
+          gpio_pin_initialization@pin_config 0048                          led_turn_off@pin_obj 004A  
+                      relay_turn_off@pin_obj 004A                                      postdec1 0FE5  
+                                    postdec2 0FDD                                      postinc0 0FEE  
+                                    postinc1 0FE6                                      postinc2 0FDE  
+                 button_read_state@btn_state 0047                      _gpio_pin_initialization 1830  
+                      ??_gpio_pin_read_logic 0042                                 _led_turn_off 17C6  
+                         relay_turn_on@F3142 0037                                __pidataCOMRAM 18BA  
+                       _btn_low_valid_status 0020                          start_initialization 1884  
+                              ??_led_turn_on 0049                      ?_application_initialize 0040  
+       gpio_pin_direction_initialization@ret 0046                              led_turn_off@led 0048  
+                           ??_relay_turn_off 0049                                _relay_turn_on 1688  
+                  ??_gpio_pin_initialization 0049                                  __pbssCOMRAM 0032  
+             __end_of_application_initialize 15A8                          __end_of_led_turn_on 17C6  
+                 _btn_high_last_valid_status 0021               gpio_pin_write_logic@pin_config 0040  
+                             ?_relay_turn_on 0048                    gpio_pin_write_logic@logic 0041  
+                                __smallconst 1000              __end_of_gpio_pin_initialization 1884  
+                         led_turn_on@pin_obj 004A                             _relay_initialize 15A8  
+  __end_of_gpio_pin_direction_initialization 12DC          ??_gpio_pin_direction_initialization 0041  
+         ?_gpio_pin_direction_initialization 0040            _gpio_pin_direction_initialization 11CA  
+                                _led_turn_on 175C                      gpio_pin_write_logic@ret 0047  
+                                  copy_data0 1898                               led_turn_on@led 0048  
+                                   __Hrparam 0000                              ??_relay_turn_on 0049  
+                                   __Lrparam 0000                  __end_of_gpio_pin_read_logic 1538  
+gpio_pin_direction_initialization@pin_config 0040                                     __ptext10 1830  
+                                   __ptext11 12DC                                     __ptext12 18EC  
+                                   __ptext13 11CA                                     _btn_high 0026  
+                                   isa$xinst 0000                 __end_of_gpio_pin_write_logic 13EC  
+                  _btn_low_last_valid_status 001F                               _btn_high_valid 0034  
+                             _port_registers 0001                     __end_of_relay_initialize 1618  
+                             _led_initialize 1618                     ?_gpio_pin_initialization 0048  
